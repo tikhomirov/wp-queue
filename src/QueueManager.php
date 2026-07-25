@@ -557,6 +557,106 @@ class QueueManager
         $this->customCreators[$driver] = $callback;
     }
 
+    /**
+     * Discover all queue names from the current driver.
+     *
+     * @return string[]
+     */
+    public function discoverQueues(): array
+    {
+        $driver = $this->getDefaultDriver();
+        $queues = ['default'];
+
+        try {
+            switch ($driver) {
+                case 'redis':
+                    $queues = $this->discoverRedisQueues();
+                    break;
+
+                case 'memcached':
+                    // Memcached doesn't support key scanning, use known queues
+                    $queues = $this->discoverKnownQueues();
+                    break;
+
+                case 'database':
+                default:
+                    $queues = $this->discoverDatabaseQueues();
+                    break;
+            }
+        } catch (\Throwable $e) {
+            if (function_exists('error_log')) {
+                error_log('[WP Queue] Failed to discover queues: '.$e->getMessage());
+            }
+        }
+
+        // Always include default queue
+        if (! in_array('default', $queues, true)) {
+            array_unshift($queues, 'default');
+        }
+
+        return array_unique($queues);
+    }
+
+    /**
+     * Discover queues from Redis.
+     *
+     * @return string[]
+     */
+    protected function discoverRedisQueues(): array
+    {
+        $queue = $this->connection('redis');
+
+        if (! $queue instanceof RedisQueue) {
+            return ['default'];
+        }
+
+        // Use reflection to access getAllQueues method
+        $reflection = new \ReflectionMethod($queue, 'getAllQueues');
+        $reflection->setAccessible(true);
+
+        return $reflection->invoke($queue);
+    }
+
+    /**
+     * Discover queues from database (wp_options).
+     *
+     * @return string[]
+     */
+    protected function discoverDatabaseQueues(): array
+    {
+        global $wpdb;
+
+        $results = $wpdb->get_col(
+            $wpdb->prepare(
+                "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s",
+                'wp_queue_jobs_%',
+            ),
+        );
+
+        $queues = ['default'];
+        foreach ($results as $optionName) {
+            $name = str_replace('wp_queue_jobs_', '', $optionName);
+            if ($name && ! in_array($name, $queues, true)) {
+                $queues[] = $name;
+            }
+        }
+
+        return $queues;
+    }
+
+    /**
+     * Get known queues from scheduled jobs.
+     *
+     * Used as fallback when driver doesn't support queue discovery.
+     *
+     * @return string[]
+     */
+    protected function discoverKnownQueues(): array
+    {
+        // Known queues used by iiko plugin
+        return ['default', 'imports', 'sync', 'cleanup'];
+    }
+
     protected function resolve(string $name): QueueInterface
     {
         if (isset($this->customCreators[$name])) {

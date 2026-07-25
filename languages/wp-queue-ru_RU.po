@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: WP Queue 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/rwsite/wp-queue/issues\n"
 "POT-Creation-Date: 2025-12-06 01:35+0000\n"
-"PO-Revision-Date: 2025-12-06 00:11+0000\n"
+"PO-Revision-Date: 2026-07-25 21:14+0000\n"
 "Last-Translator: \n"
 "Language-Team: Русский\n"
 "Language: ru_RU\n"
@@ -18,128 +18,164 @@ msgstr ""
 "X-Generator: Loco https://localise.biz/\n"
 "X-Loco-Version: 2.8.0; wp-6.9; php-8.3.28"
 
-#: src/Admin/AdminPage.php:910
+#: src/Admin/AdminPage.php:913
 msgid "%d entries"
 msgstr "%d записей"
 
-#: src/Admin/AdminPage.php:542
+#: src/Admin/AdminPage.php:545
 msgid "%d tasks"
 msgstr "%d задач"
 
-#: src/Admin/AdminPage.php:1068
+#: src/Admin/AdminPage.php:1071
 msgid "(configured)"
 msgstr "(настроено)"
 
-#: src/Admin/AdminPage.php:666
+#: src/Admin/AdminPage.php:2306
+msgid ""
+"--memory limits the PHP memory for the worker process. Adjust the value to "
+"your needs."
+msgstr ""
+"--memory ограничивает память PHP для процесса воркера. Подберите значение "
+"под свои задачи."
+
+#: src/Admin/AdminPage.php:2296
+msgid "1. Enable daemon runtime mode"
+msgstr "1. Включите режим демона"
+
+#: src/Admin/AdminPage.php:2301
+msgid "2. Run the worker"
+msgstr "2. Запустите воркер"
+
+#: src/Admin/AdminPage.php:2328
+msgid "3. Keep it running"
+msgstr "3. Держите процесс запущенным"
+
+#: src/Admin/AdminPage.php:2367
+msgid "4. Check status"
+msgstr "4. Проверьте статус"
+
+#: src/Admin/AdminPage.php:669
 msgid "A background process (Worker) constantly checks the queue for new jobs."
 msgstr ""
-"Фоновый процесс (Worker) постоянно проверяет очередь на наличие новых задач."
+"Фоновый процесс (Worker) постоянно проверяет очередь на наличие новых "
+"заданий."
 
-#: src/Admin/AdminPage.php:716
+#: src/Admin/AdminPage.php:1867
+msgid ""
+"A daemon worker is expected to process queues. WP-Cron and loopback are "
+"disabled."
+msgstr ""
+"Для обработки очередей ожидается демон-воркер. WP-Cron и loopback отключены."
+
+#: src/Admin/AdminPage.php:719
 msgid ""
 "A list of all active queues with their size, status "
 "(idle/pending/running/paused), and control buttons (pause/resume, clear all "
 "tasks)."
 msgstr ""
-"Список всех активных очередей с их размером, статусом "
-"(бездействие/ожидание/выполнение/пауза) и кнопками управления "
+"Список всех активных очередей с указанием их размера, статуса "
+"(простой/ожидание/выполнение/приостановка) и кнопок управления "
 "(пауза/возобновление, очистить все задачи)."
 
-#: src/Admin/AdminPage.php:664
+#: src/Admin/AdminPage.php:667
 msgid "A plugin creates a \"Job\" (a task) and pushes it to the queue."
-msgstr "Плагин создает \"Задачу\" (Job) и помещает ее в очередь."
+msgstr "Плагин создает «Задание» (задачу) и помещает его в очередь."
 
-#: src/Admin/AdminPage.php:688
+#: src/Admin/AdminPage.php:691
 msgid ""
 "A real cron job configured on your server (Linux) that calls WordPress every "
 "minute. This is reliable and precise. Ideally, you should disable default WP-"
 "Cron and use System Cron."
 msgstr ""
-"Настоящая задача cron, настроенная на вашем сервере (Linux), которая "
-"вызывает WordPress каждую минуту. Это надежно и точно. В идеале, вы должны "
-"отключить стандартный WP-Cron и использовать системный Cron."
+"На вашем сервере (Linux) должна быть настроена настоящая задача cron, "
+"которая будет запускать WordPress каждую минуту. Это надежно и точно. В "
+"идеале следует отключить стандартный WP-Cron и использовать системный Cron."
 
-#: src/Admin/AdminPage.php:765
+#: src/Admin/AdminPage.php:768
 msgid "A separate table for events that are temporarily disabled."
-msgstr "Отдельная таблица для временно отключенных событий."
+msgstr "Отдельная таблица для событий, которые временно отключены."
 
-#: src/Admin/AdminPage.php:766
+#: src/Admin/AdminPage.php:769
 msgid ""
 "A table of all available intervals (hourly, daily, etc.) with their duration."
 msgstr ""
-"Таблица всех доступных интервалов (ежечасно, ежедневно и т.д.) с их "
+"Таблица со всеми доступными интервалами (почасовыми, суточным и т. д.) и их "
 "продолжительностью."
 
-#: src/Admin/AdminPage.php:85 src/Admin/AdminPage.php:106
-#: src/Admin/AdminPage.php:638
+#: src/Admin/AdminPage.php:88 src/Admin/AdminPage.php:109
+#: src/Admin/AdminPage.php:641
 msgid "About WP Queue"
 msgstr "О WP Queue"
 
-#: src/Admin/AdminPage.php:198
+#: src/Admin/AdminPage.php:201
 msgid "Action completed successfully"
-msgstr "Действие выполнено успешно"
+msgstr "Действие успешно завершено."
 
-#: src/Admin/AdminPage.php:782 src/Admin/AdminPage.php:1743
-#: src/Admin/AdminPage.php:1942
+#: src/Admin/AdminPage.php:785 src/Admin/AdminPage.php:1746
+#: src/Admin/AdminPage.php:1984
 msgid "Action Scheduler"
 msgstr "Планировщик действий"
 
-#: src/Admin/AdminPage.php:481 src/Admin/AdminPage.php:594
-#: src/Admin/AdminPage.php:1483 src/Admin/AdminPage.php:1558
-#: src/Admin/AdminPage.php:2207
+#: src/Admin/AdminPage.php:484 src/Admin/AdminPage.php:597
+#: src/Admin/AdminPage.php:1486 src/Admin/AdminPage.php:1561
+#: src/Admin/AdminPage.php:2255
 msgid "Actions"
 msgstr "Действия"
 
-#: src/Admin/AdminPage.php:428 src/Admin/AdminPage.php:1055
-#: src/Admin/AdminPage.php:1367 src/Admin/AdminPage.php:1872
+#: src/Admin/AdminPage.php:431 src/Admin/AdminPage.php:1058
+#: src/Admin/AdminPage.php:1370 src/Admin/AdminPage.php:1911
 msgid "Active"
 msgstr "Активный"
 
-#: src/Admin/AdminPage.php:1100
-msgid "Add to wp-config.php:"
-msgstr "Добавить в wp-config.php:"
+#: src/Admin/AdminPage.php:2297
+msgid "Add this to wp-config.php:"
+msgstr "Добавьте в wp-config.php:"
 
-#: src/Admin/AdminPage.php:615
+#: src/Admin/AdminPage.php:1103
+msgid "Add to wp-config.php:"
+msgstr "Добавьте в файл wp-config.php:"
+
+#: src/Admin/AdminPage.php:618
 msgid "ago (overdue)"
-msgstr "назад (просрочено)"
+msgstr "давно (просрочено)"
 
 #. Author of the plugin
 msgid "Aleksei Tikhomirov"
 msgstr "Алексей Тихомиров"
 
-#: src/Admin/AdminPage.php:837 src/Admin/AdminPage.php:1459
+#: src/Admin/AdminPage.php:840 src/Admin/AdminPage.php:1462
 msgid "All"
 msgstr "Все"
 
-#: src/Admin/AdminPage.php:848
+#: src/Admin/AdminPage.php:851
 msgid "All queues"
 msgstr "Все очереди"
 
-#: src/Admin/AdminPage.php:1657
+#: src/Admin/AdminPage.php:1660
 msgid "All systems are healthy."
 msgstr "Все системы работают исправно."
 
-#: src/Admin/AdminPage.php:1709
+#: src/Admin/AdminPage.php:1712
 msgid "Alternate Cron"
 msgstr "Альтернативный Cron"
 
-#: src/Admin/AdminPage.php:199
+#: src/Admin/AdminPage.php:202
 msgid "An error occurred"
-msgstr "Произошла ошибка"
+msgstr "Произошла ошибка."
 
-#: src/Admin/AdminPage.php:196
+#: src/Admin/AdminPage.php:199
 msgid "Are you sure you want to clear this queue?"
 msgstr "Вы уверены, что хотите очистить эту очередь?"
 
-#: src/Admin/AdminPage.php:478 src/Admin/AdminPage.php:960
+#: src/Admin/AdminPage.php:481 src/Admin/AdminPage.php:963
 msgid "Attempts"
 msgstr "Попытки"
 
-#: src/Admin/AdminPage.php:167
+#: src/Admin/AdminPage.php:170
 msgid "Author Website"
-msgstr "Сайт автора"
+msgstr "Веб-сайт автора"
 
-#: src/Admin/AdminPage.php:479
+#: src/Admin/AdminPage.php:482
 msgid "Available From"
 msgstr "Доступно с"
 
@@ -151,181 +187,192 @@ msgstr ""
 "Обработка фоновых задач и управление WP-Cron для WordPress. Планируйте "
 "задачи, управляйте очередями и отслеживайте cron-события."
 
-#: src/Admin/AdminPage.php:122
+#: src/Admin/AdminPage.php:125
 msgid "Basic Usage"
-msgstr "Базовое использование"
+msgstr "Основные правила использования"
 
-#: src/Admin/AdminPage.php:748
+#: src/Admin/AdminPage.php:751
 msgid "Button to delete old log entries to avoid cluttering the database."
 msgstr ""
-"Кнопка для удаления старых записей журнала, чтобы избежать загромождения "
-"базы данных."
+"Кнопка для удаления старых записей журнала во избежание засорения базы "
+"данных."
 
-#: src/Admin/AdminPage.php:746
+#: src/Admin/AdminPage.php:749
 msgid "Buttons to show all entries, only completed, or only failed jobs."
 msgstr ""
-"Кнопки для показа всех записей, только завершенных или только неудачных "
-"задач."
+"Кнопки для отображения всех записей, только завершенных или только неудачно "
+"завершенных заданий."
 
-#: src/Admin/AdminPage.php:650
+#: src/Admin/AdminPage.php:653
 msgid ""
 "By default, WordPress executes all actions during the page load request. If "
 "a plugin needs to send 100 emails or sync 500 products with an external API, "
 "the user has to wait until it finishes. This leads to slow page loads or "
 "timeouts."
 msgstr ""
-"По умолчанию WordPress выполняет все действия во время загрузки страницы. "
-"Если плагину нужно отправить 100 писем или синхронизировать 500 товаров с "
-"внешним API, пользователь должен дождаться завершения. Это приводит к "
-"медленной загрузке страниц или тайм-аутам."
+"По умолчанию WordPress выполняет все действия во время запроса на загрузку "
+"страницы. Если плагину необходимо отправить 100 электронных писем или "
+"синхронизировать 500 товаров с внешним API, пользователю приходится ждать "
+"завершения процесса. Это приводит к медленной загрузке страниц или таймаутам."
 
-#: src/Admin/AdminPage.php:698
+#: src/Admin/AdminPage.php:701
 msgid ""
 "By default, WP Queue stores jobs in the WordPress database (wp_options or "
 "custom tables). For high-performance sites, you can use Redis. Redis is an "
 "in-memory data store that is much faster than a SQL database for queue "
 "operations. It reduces load on your database and speeds up job processing."
 msgstr ""
-"По умолчанию WP Queue хранит задачи в базе данных WordPress (wp_options или "
-"пользовательские таблицы). Для сайтов с высокой производительностью вы "
-"можете использовать Redis. Redis - это хранилище данных в памяти, которое "
-"намного быстрее, чем база данных SQL для операций с очередью. Это снижает "
-"нагрузку на вашу базу данных и ускоряет обработку задач."
+"По умолчанию WP Queue хранит задания в базе данных WordPress (в папке "
+"wp_options или в пользовательских таблицах). Для высокопроизводительных "
+"сайтов можно использовать Redis. Redis — это хранилище данных в оперативной "
+"памяти, которое намного быстрее, чем база данных SQL, при работе с очередями."
+" Оно снижает нагрузку на базу данных и ускоряет обработку заданий."
 
-#: src/Admin/AdminPage.php:1623
+#: src/Admin/AdminPage.php:1626
 msgid "Cancel"
 msgstr "Отмена"
 
-#: src/QueueManager.php:318
+#: src/QueueManager.php:500
 #, php-format
 msgid "Cannot connect to Memcached at %s:%d - %s"
 msgstr "Не удалось подключиться к Memcached на %s:%d - %s"
 
-#: src/QueueManager.php:266
+#: src/QueueManager.php:297 src/QueueManager.php:375 src/QueueManager.php:448
 #, php-format
 msgid "Cannot connect to Redis at %s:%d - %s"
 msgstr "Не удалось подключиться к Redis на %s:%d - %s"
 
-#: src/Admin/AdminPage.php:114
+#: src/Admin/AdminPage.php:117
 msgid "Check basic system requirements that affect queue stability."
 msgstr ""
-"Проверьте базовые системные требования, влияющие на стабильность очереди."
+"Проверьте основные системные требования, влияющие на стабильность очереди."
 
-#: src/Admin/AdminPage.php:1037
+#: src/Admin/AdminPage.php:1040
 msgid "Check driver settings."
 msgstr "Проверьте настройки драйвера."
 
-#: src/Admin/AdminPage.php:751
+#: src/Admin/AdminPage.php:754
 msgid "Check logs when encountering errors in background processes."
-msgstr "Проверьте журналы при возникновении ошибок в фоновых процессах."
+msgstr "При обнаружении ошибок в фоновых процессах проверяйте журналы."
 
-#: src/Admin/AdminPage.php:785
+#: src/Admin/AdminPage.php:788
 msgid "Check this tab when setting up your server or debugging queue issues."
 msgstr ""
-"Проверьте эту вкладку при настройке сервера или отладке проблем с очередью."
+"Проверьте эту вкладку при настройке сервера или отладке проблем с очередями."
 
-#: src/Admin/AdminPage.php:781
+#: src/Admin/AdminPage.php:784
 msgid ""
 "Checking for disablement (DISABLE_WP_CRON), alternative cron, loopback "
 "requests."
 msgstr ""
-"Проверка отключения (DISABLE_WP_CRON), альтернативного cron, обратных "
-"запросов."
+"Проверка на отключение (DISABLE_WP_CRON), альтернативный cron, запросы "
+"обратной связи."
 
-#: src/Admin/AdminPage.php:777
+#: src/Admin/AdminPage.php:780
 msgid ""
 "Checking system requirements and environment for stable queue operation."
 msgstr ""
-"Проверка системных требований и окружения для стабильной работы очереди."
+"Проверка системных требований и среды для обеспечения стабильной работы "
+"очереди."
 
-#: src/Admin/AdminPage.php:451
+#: src/Admin/AdminPage.php:454
 msgid "Clear"
 msgstr "Очистить"
 
-#: src/Admin/AdminPage.php:1995
+#: src/Admin/AdminPage.php:2037
 msgid "Clear All"
 msgstr "Очистить все"
 
-#: src/Admin/AdminPage.php:1983
+#: src/Admin/AdminPage.php:2025
 msgid "Clear All Logs"
 msgstr "Очистить все журналы"
 
-#: src/Admin/AdminPage.php:1993
+#: src/Admin/AdminPage.php:2035
 msgid "Clear All Queues"
 msgstr "Очистить все очереди"
 
-#: src/Admin/AdminPage.php:1981
+#: src/Admin/AdminPage.php:2023
 msgid "Clear Logs"
 msgstr "Очистить журналы"
 
-#: src/Admin/AdminPage.php:748
+#: src/Admin/AdminPage.php:751
 msgid "Clear logs"
 msgstr "Очистить журналы"
 
-#: src/Admin/AdminPage.php:860
+#: src/Admin/AdminPage.php:863
 msgid "Clear old"
-msgstr "Очистить старые"
+msgstr "Удалить старые"
 
-#: src/Admin/AdminPage.php:567
+#: src/Admin/AdminPage.php:570
 msgid "Close"
 msgstr "Закрыть"
 
-#: src/Admin/AdminPage.php:783
+#: src/Admin/AdminPage.php:786
 msgid ""
 "Comparison of server time, WordPress, and GMT offset for diagnosing "
 "scheduling issues."
 msgstr ""
-"Сравнение серверного времени, WordPress и смещения GMT для диагностики "
-"проблем с планированием."
+"Сравнение серверного времени, времени WordPress и смещения GMT для "
+"диагностики проблем с планированием."
 
-#: src/Admin/AdminPage.php:326 src/Admin/AdminPage.php:352
-#: src/Admin/AdminPage.php:840 src/Admin/AdminPage.php:1820
+#: src/Admin/AdminPage.php:329 src/Admin/AdminPage.php:355
+#: src/Admin/AdminPage.php:843 src/Admin/AdminPage.php:1823
 msgid "Completed"
-msgstr "Завершено"
+msgstr "Завершенные"
 
-#: src/Admin/AdminPage.php:1856
+#: src/Admin/AdminPage.php:1885
 msgid "Component Status"
-msgstr "Статус компонента"
+msgstr "Состояние компонента"
 
-#: src/Admin/AdminPage.php:366
+#: src/Admin/AdminPage.php:369
 msgid "Configure"
-msgstr "Настроить"
+msgstr "Настройка"
 
-#: src/Admin/AdminPage.php:2095
+#: src/Admin/AdminPage.php:2137
 msgid "Configure automatic retries on errors:"
-msgstr "Настроить автоматические повторные попытки при ошибках:"
+msgstr "Настройте автоматическое повторение попыток при возникновении ошибок:"
 
-#: src/Admin/AdminPage.php:1109
+#: src/Admin/AdminPage.php:1112
 msgid "Configure Memcached"
-msgstr "Настроить Memcached"
+msgstr "Настройка Memcached"
 
-#: src/Admin/AdminPage.php:1103
+#: src/Admin/AdminPage.php:1106
 msgid "Configure Redis"
-msgstr "Настроить Redis"
+msgstr "Настройка Redis"
 
-#: src/Admin/AdminPage.php:1870
+#: src/Admin/AdminPage.php:1909
 msgid "Configure system cron"
-msgstr "Настроить системный cron"
+msgstr "Настройте системный cron."
 
-#: src/QueueManager.php:307
+#: src/QueueManager.php:489
 #, php-format
 msgid "Connected to Memcached at %s:%d"
 msgstr "Подключено к Memcached на %s:%d"
 
-#: src/QueueManager.php:255
+#: src/QueueManager.php:289
 #, php-format
-msgid "Connected to Redis at %s:%d"
-msgstr "Подключено к Redis на %s:%d"
+msgid "Connected to Redis at %s:%d (phpredis)"
+msgstr "Подключено к Redis по адресу %s:%d (phpredis)"
 
-#: src/Admin/AdminPage.php:2038
+#: src/QueueManager.php:440
+#, php-format
+msgid "Connected to Redis at %s:%d (Predis)"
+msgstr "Подключено к Redis по адресу %s:%d (Predis)"
+
+#: src/QueueManager.php:349 src/QueueManager.php:367
+#, php-format
+msgid "Connected to Redis at %s:%d (via redis-cache plugin)"
+msgstr "Подключено к Redis по адресу %s:%d (через плагин redis-cache)"
+
+#: src/Admin/AdminPage.php:2080
 msgid "Create a job class and dispatch it to the queue:"
-msgstr "Создайте класс задачи и отправьте его в очередь:"
+msgstr "Создайте класс задания и отправьте его в очередь:"
 
-#: src/Admin/AdminPage.php:768
+#: src/Admin/AdminPage.php:771
 msgid "Critical for understanding why tasks are not running on time."
 msgstr ""
-"Критически важно для понимания причин, по которым задачи не выполняются "
-"вовремя."
+"Это крайне важно для понимания причин, по которым задачи не выполняются в "
+"срок."
 
 #: src/Admin/RestApi.php:523
 msgid "Cron event paused"
@@ -339,229 +386,229 @@ msgstr "Cron-событие возобновлено"
 msgid "Cron event updated"
 msgstr "Cron-событие обновлено"
 
-#: src/Admin/AdminPage.php:50
+#: src/Admin/AdminPage.php:52
 msgid "Cron Events"
-msgstr "Cron-события"
+msgstr "События Cron"
 
-#: src/Admin/AdminPage.php:1043
-msgid "Current driver:"
-msgstr "Текущий драйвер:"
-
-#: src/Admin/AdminPage.php:1677
+#: src/Admin/AdminPage.php:1680
 msgid "Current Memory Usage"
 msgstr "Текущее использование памяти"
 
-#: src/QueueManager.php:207 src/QueueManager.php:351 src/QueueManager.php:353
+#: src/Admin/AdminPage.php:1046
+msgid "Current storage backend:"
+msgstr "Текущая система хранения данных:"
+
+#: src/QueueManager.php:207 src/QueueManager.php:533 src/QueueManager.php:535
 msgid "Custom driver"
 msgstr "Пользовательский драйвер"
 
-#: src/Admin/AdminPage.php:710
+#: src/Admin/AdminPage.php:1865
+msgid "Daemon process"
+msgstr "Демон-процесс"
+
+#: src/Admin/AdminPage.php:58 src/Admin/AdminPage.php:2288
+msgid "Daemon worker"
+msgstr "Демон-воркер"
+
+#: src/Admin/AdminPage.php:713
 msgid "Dashboard"
 msgstr "Панель управления"
 
-#: src/Admin/AdminPage.php:125
+#: src/Admin/AdminPage.php:128
 msgid ""
 "Dashboard – quick overview of queues, number of jobs and recent activity."
 msgstr ""
-"Панель управления – быстрый обзор очередей, количества задач и недавней "
+"Панель управления – краткий обзор очередей, количества заданий и недавней "
 "активности."
 
-#: src/Admin/AdminPage.php:2056
+#: src/Admin/AdminPage.php:2098
 msgid "Delayed Jobs"
-msgstr "Отложенные задачи"
+msgstr "Задержка с выполнением заданий"
 
-#: src/Admin/AdminPage.php:527 src/Admin/AdminPage.php:1539
-#: src/Admin/AdminPage.php:1540
+#: src/Admin/AdminPage.php:530 src/Admin/AdminPage.php:1542
+#: src/Admin/AdminPage.php:1543
 msgid "Delete"
 msgstr "Удалить"
 
-#: src/Admin/AdminPage.php:864
+#: src/Admin/AdminPage.php:867
 msgid "Delete all"
 msgstr "Удалить все"
 
-#: src/Admin/AdminPage.php:1982
+#: src/Admin/AdminPage.php:2024
 msgid "Deletes all job execution logs"
-msgstr "Удаляет все журналы выполнения задач"
+msgstr "Удаляет все журналы выполнения заданий."
 
-#: src/Admin/AdminPage.php:1994
+#: src/Admin/AdminPage.php:2036
 msgid "Deletes all jobs from all queues"
-msgstr "Удаляет все задачи из всех очередей"
+msgstr "Удаляет все задания из всех очередей."
 
-#: src/Admin/AdminPage.php:858
+#: src/Admin/AdminPage.php:861
 msgid "Deletes logs older than 7 days"
-msgstr "Удаляет журналы старше 7 дней"
+msgstr "Удаляет журналы старше 7 дней."
 
-#: src/Admin/AdminPage.php:1054
+#: src/Admin/AdminPage.php:1057
 msgid "Description"
 msgstr "Описание"
 
-#: src/Admin/AdminPage.php:706
+#: src/Admin/AdminPage.php:709
 msgid "Detailed description of the panel tabs"
 msgstr "Подробное описание вкладок панели"
 
-#: src/Admin/AdminPage.php:524
+#: src/Admin/AdminPage.php:527
 msgid "Details"
-msgstr "Детали"
+msgstr "Подробности"
 
-#: src/Admin/AdminPage.php:117
+#: src/Admin/AdminPage.php:120
 msgid ""
 "Developers can dispatch their own jobs to the queue, choose drivers "
 "(Database, Sync, Redis), configure retries and schedules. See the "
 "documentation and examples on GitHub for integration details."
 msgstr ""
-"Разработчики могут отправлять свои задачи в очередь, выбирать драйверы "
-"(Database, Sync, Redis), настраивать повторные попытки и расписания. См. "
-"документацию и примеры на GitHub для деталей интеграции."
+"Разработчики могут отправлять свои собственные задания в очередь, выбирать "
+"драйверы (база данных, синхронизация, Redis), настраивать повторные попытки "
+"и расписание. Подробную информацию об интеграции см. в документации и "
+"примерах на GitHub."
 
-#: src/Admin/AdminPage.php:1702
+#: src/Admin/AdminPage.php:1705
 msgid ""
 "DISABLE_WP_CRON is set to true. Background tasks will not run automatically."
 msgstr ""
-"DISABLE_WP_CRON установлен в true. Фоновые задачи не будут выполняться "
-"автоматически."
+"Параметр DISABLE_WP_CRON установлен в значение true. Фоновые задачи не будут "
+"выполняться автоматически."
 
-#: src/Admin/AdminPage.php:1364 src/Admin/AdminPage.php:1701
-#: src/Admin/AdminPage.php:1714 src/Admin/AdminPage.php:1869
+#: src/Admin/AdminPage.php:1367 src/Admin/AdminPage.php:1704
+#: src/Admin/AdminPage.php:1717 src/Admin/AdminPage.php:1908
 msgid "Disabled"
-msgstr "Отключено"
+msgstr "Отключен"
 
-#: src/Admin/AdminPage.php:664
+#: src/Admin/AdminPage.php:667
 msgid "Dispatch"
-msgstr "Отправить"
+msgstr "Отправлять"
 
-#: src/Admin/AdminPage.php:1586
+#: src/Admin/AdminPage.php:1589
 msgid "Display"
-msgstr "Отобразить"
+msgstr "Показ"
 
-#: src/Admin/AdminPage.php:582
+#: src/Admin/AdminPage.php:585
 msgid ""
 "Displays a table of scheduled recurring tasks (PHP classes) registered in WP "
 "Queue: job class, execution interval, queue assignment, and next run time. "
 "Allows you to run any task manually."
 msgstr ""
-"Отображает таблицу запланированных повторяющихся задач (классы PHP), "
+"Отображает таблицу запланированных повторяющихся задач (PHP-классов), "
 "зарегистрированных в WP Queue: класс задачи, интервал выполнения, назначение "
-"очереди и время следующего запуска. Позволяет запустить любую задачу вручную."
+"в очередь и время следующего запуска. Позволяет запускать любую задачу "
+"вручную."
 
-#: src/Admin/AdminPage.php:730
+#: src/Admin/AdminPage.php:733
 msgid "Displays all registered PHP job classes with their configuration."
-msgstr "Отображает все зарегистрированные классы задач PHP с их конфигурацией."
+msgstr ""
+"Отображает все зарегистрированные классы заданий PHP с их конфигурацией."
 
-#: src/Admin/AdminPage.php:1641
+#: src/Admin/AdminPage.php:1644
 msgid ""
 "Displays environment information (PHP and WordPress versions, memory limits, "
 "execution time, timezone), WP-Cron status (disabled, alternative cron, "
 "loopback checks). If Action Scheduler is installed - its statistics. Server "
 "and WordPress time."
 msgstr ""
-"Отображает информацию об окружении (версии PHP и WordPress, лимиты памяти, "
-"время выполнения, часовой пояс), статус WP-Cron (отключен, альтернативный "
-"cron, проверки обратной связи). Если установлен Action Scheduler - его "
-"статистика. Серверное и время WordPress."
+"Отображает информацию об окружении (версии PHP и WordPress, ограничения "
+"памяти, время выполнения, часовой пояс), статус WP-Cron (отключен, "
+"альтернативный cron, проверки обратной связи). Если установлен Action "
+"Scheduler — его статистика. Время сервера и WordPress."
 
-#: src/Admin/AdminPage.php:749
+#: src/Admin/AdminPage.php:752
 msgid "Displays the last 200 entries by default or all completed/failed."
 msgstr ""
-"Отображает последние 200 записей по умолчанию или все завершенные/неудачные."
+"По умолчанию отображаются последние 200 записей или все "
+"завершенные/незавершенные."
 
-#: src/Admin/AdminPage.php:715
+#: src/Admin/AdminPage.php:718
 msgid ""
 "Displays the total number of tasks in different statuses (pending, running, "
 "completed, failed)."
 msgstr ""
-"Отображает общее количество задач в разных статусах (ожидание, выполнение, "
-"завершено, неудача)."
+"Отображает общее количество задач в различных статусах (ожидание, выполнение,"
+" завершено, сбой)."
 
-#: src/Admin/AdminPage.php:733
+#: src/Admin/AdminPage.php:736
 msgid "Displays when the job should run next or marks overdue jobs."
 msgstr ""
-"Отображает, когда задача должна выполняться следующей, или отмечает "
-"просроченные задачи."
+"Отображает время следующего запуска задания или помечает просроченные "
+"задания."
 
-#: src/Admin/AdminPage.php:2077
+#: src/Admin/AdminPage.php:2119
 msgid "Distribute jobs across different queues:"
-msgstr "Распределите задачи по разным очередям:"
+msgstr "Распределите задания по разным очередям:"
 
-#: src/Admin/AdminPage.php:2164
+#: src/Admin/AdminPage.php:2206
 msgid "Documentation on GitHub"
 msgstr "Документация на GitHub"
 
-#: src/Admin/AdminPage.php:1052
-msgid "Driver"
-msgstr "Драйвер"
-
-#: src/Admin/AdminPage.php:1031
-#, php-format
-msgid ""
-"Driver \"%s\" is configured in wp-config.php, but not available. Falling "
-"back to \"%s\"."
-msgstr ""
-"Драйвер \"%s\" настроен в wp-config.php, но недоступен. Переход на \"%s\"."
-
-#: src/Admin/AdminPage.php:363
+#: src/Admin/AdminPage.php:366
 msgid "Driver:"
 msgstr "Драйвер:"
 
-#: src/Admin/AdminPage.php:46
+#: src/Admin/AdminPage.php:48
 msgid "Drivers"
 msgstr "Драйверы"
 
-#: src/Admin/AdminPage.php:1526
+#: src/Admin/AdminPage.php:1529
 msgid "Edit"
 msgstr "Редактировать"
 
-#: src/Admin/AdminPage.php:1603
+#: src/Admin/AdminPage.php:1606
 msgid "Edit Cron Event"
-msgstr "Редактировать Cron-событие"
+msgstr "Редактировать событие Cron"
 
-#: src/Admin/AdminPage.php:1525
+#: src/Admin/AdminPage.php:1528
 msgid "Edit Schedule"
 msgstr "Редактировать расписание"
 
-#: src/Admin/AdminPage.php:1704 src/Admin/AdminPage.php:1712
+#: src/Admin/AdminPage.php:1707 src/Admin/AdminPage.php:1715
 msgid "Enabled"
 msgstr "Включено"
 
-#: src/Admin/AdminPage.php:780 src/Admin/AdminPage.php:1661
+#: src/Admin/AdminPage.php:783 src/Admin/AdminPage.php:1664
 msgid "Environment"
-msgstr "Окружение"
+msgstr "Environment"
 
-#: src/Admin/AdminPage.php:1729
+#: src/Admin/AdminPage.php:1732 src/Admin/AdminPage.php:1927
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/Admin/AdminPage.php:961
+#: src/Admin/AdminPage.php:964
 msgid "Error message"
 msgstr "Сообщение об ошибке"
 
-#: src/Admin/AdminPage.php:1824
+#: src/Admin/AdminPage.php:1827
 msgid "Errors"
 msgstr "Ошибки"
 
-#: src/Admin/AdminPage.php:764
+#: src/Admin/AdminPage.php:767
 msgid "Event actions"
-msgstr "Действия событий"
+msgstr "Действия события"
 
-#: src/Admin/AdminPage.php:763
+#: src/Admin/AdminPage.php:766
 msgid ""
 "Event hook, next run time, schedule (single/hourly/daily), source, arguments."
 msgstr ""
-"Хук события, время следующего запуска, расписание "
-"(однократно/ежечасно/ежедневно), источник, аргументы."
+"Перехватчик событий, время следующего запуска, расписание "
+"(однократное/ежечасное/ежедневное), источник, аргументы."
 
-#: src/Admin/AdminPage.php:762
+#: src/Admin/AdminPage.php:765
 msgid "Event statistics"
 msgstr "Статистика событий"
 
-#: src/Admin/AdminPage.php:763
+#: src/Admin/AdminPage.php:766
 msgid "Event table"
 msgstr "Таблица событий"
 
-#: src/Admin/AdminPage.php:1382
+#: src/Admin/AdminPage.php:1385
 msgid "events"
 msgstr "события"
 
-#: src/Admin/AdminPage.php:1372
+#: src/Admin/AdminPage.php:1375
 msgid "Events by Source"
 msgstr "События по источникам"
 
@@ -570,21 +617,24 @@ msgstr "События по источникам"
 msgid "Every %d Minutes"
 msgstr "Каждые %d минут"
 
-#: src/Admin/AdminPage.php:747
+#: src/Admin/AdminPage.php:2218
+msgid "Example Plugin on GitHub"
+msgstr "Пример плагина на GitHub"
+
+#: src/Admin/AdminPage.php:750
 msgid ""
 "Execution time, status (completed/failed/retrying), job class, queue, error "
 "message."
 msgstr ""
-"Время выполнения, статус (завершено/неудача/повторная попытка), класс задачи,"
-" очередь, сообщение об ошибке."
+"Время выполнения, статус (завершено/сбой/повторная попытка), класс задания, "
+"очередь, сообщение об ошибке."
 
-#: src/Admin/AdminPage.php:45 src/Admin/AdminPage.php:327
-#: src/Admin/AdminPage.php:356 src/Admin/AdminPage.php:843
-#| msgid "File"
+#: src/Admin/AdminPage.php:47 src/Admin/AdminPage.php:330
+#: src/Admin/AdminPage.php:359 src/Admin/AdminPage.php:846
 msgid "Failed"
-msgstr "Сбои и неудачи"
+msgstr "Ошибки"
 
-#: src/Admin/AdminPage.php:1760
+#: src/Admin/AdminPage.php:1763
 msgid "Failed Actions"
 msgstr "Неудачные действия"
 
@@ -600,74 +650,78 @@ msgstr "Не удалось возобновить событие"
 msgid "Failed to update event"
 msgstr "Не удалось обновить событие"
 
-#: src/Admin/AdminPage.php:116 src/Admin/AdminPage.php:132
+#: src/Admin/AdminPage.php:119 src/Admin/AdminPage.php:135
 msgid "For developers"
 msgstr "Для разработчиков"
 
-#: src/Admin/AdminPage.php:164
+#: src/Admin/AdminPage.php:167
 msgid "For more information:"
 msgstr "Для получения дополнительной информации:"
 
-#: src/Admin/AdminPage.php:1117
+#: src/Admin/AdminPage.php:1120
 msgid ""
 "For Redis/Memcached to work, you need the PHP extension installed and a "
 "server available. If not, the system will automatically use the \"database\" "
 "driver."
 msgstr ""
-"Для работы Redis/Memcached необходимо установить PHP-расширение и иметь "
-"доступный сервер. В противном случае система автоматически использует "
-"драйвер \"база данных\"."
+"Для работы Redis/Memcached необходимо установить расширение PHP и иметь "
+"доступный сервер. В противном случае система автоматически будет "
+"использовать драйвер \"database\"."
 
-#: src/Admin/AdminPage.php:123
+#: src/Admin/AdminPage.php:126
 msgid "For site administrators"
-msgstr "Для администраторов сайтов"
+msgstr "Для администраторов сайта"
 
-#: src/Admin/AdminPage.php:1988
+#: src/Admin/AdminPage.php:2030
 msgid "Forces processing of all queues"
-msgstr "Принудительно обрабатывает все очереди"
+msgstr "Принудительная обработка всех очередей"
 
-#: src/Admin/AdminPage.php:504 src/Admin/AdminPage.php:615
+#: src/Admin/AdminPage.php:507 src/Admin/AdminPage.php:618
 msgid "from now"
-msgstr "сейчас"
+msgstr "с настоящего момента"
 
 #. %s: URL to GitHub repository
-#: src/Admin/AdminPage.php:795
+#: src/Admin/AdminPage.php:798
 #, php-format
 msgid "Full documentation and code examples are available on GitHub: %s."
 msgstr "Полная документация и примеры кода доступны на GitHub: %s."
 
-#: src/Admin/AdminPage.php:165
+#: src/Admin/AdminPage.php:168
 msgid "GitHub Repository"
 msgstr "Репозиторий GitHub"
 
-#: src/Admin/AdminPage.php:1788
+#: src/Admin/AdminPage.php:1791
 msgid "GMT Offset"
-msgstr "Смещение GMT"
+msgstr "GMT Offset"
 
-#: src/Admin/AdminPage.php:57
+#: src/Admin/AdminPage.php:60
 msgid "Help"
 msgstr "Помощь"
 
-#: src/Admin/AdminPage.php:44
+#: src/Admin/AdminPage.php:46
 msgid "History"
 msgstr "История"
 
-#: src/Admin/AdminPage.php:744
+#: src/Admin/AdminPage.php:747
 msgid "History of all job executions for diagnostics and debugging."
-msgstr "История всех выполнений задач для диагностики и отладки."
+msgstr "История всех выполненных заданий для диагностики и отладки."
 
-#: src/Admin/AdminPage.php:1402 src/Admin/AdminPage.php:1479
-#: src/Admin/AdminPage.php:1555 src/Admin/AdminPage.php:2204
+#: src/Admin/AdminPage.php:1405 src/Admin/AdminPage.php:1482
+#: src/Admin/AdminPage.php:1558 src/Admin/AdminPage.php:2252
 msgid "Hook"
 msgstr "Хук"
 
-#: src/Admin/AdminPage.php:662
+#: src/Admin/AdminPage.php:665
 msgid "How Queues Work"
 msgstr "Как работают очереди"
 
-#: src/Admin/AdminPage.php:1099
-msgid "How to change the driver?"
-msgstr "Как изменить драйвер?"
+#: src/Admin/AdminPage.php:1102
+msgid "How to change the storage backend?"
+msgstr "Как изменить хранилище для данных?"
+
+#: src/Admin/AdminPage.php:2289
+msgid "How to run WP Queue as a long-running background process."
+msgstr "Как запустить WP Queue в виде долгоживущего фонового процесса."
 
 #. URI of the plugin
 msgid "https://github.com/rwsite/wp-queue"
@@ -677,112 +731,159 @@ msgstr "https://github.com/rwsite/wp-queue"
 msgid "https://rwsite.ru"
 msgstr "https://rwsite.ru"
 
-#: src/Admin/AdminPage.php:476
+#: src/Admin/AdminPage.php:479
 msgid "ID"
 msgstr "ID"
 
-#: src/Admin/AdminPage.php:322
+#: src/Admin/AdminPage.php:325
 msgid "Idle"
-msgstr "Бездействие"
+msgstr "Idle"
 
-#: src/Admin/AdminPage.php:782
+#: src/Admin/AdminPage.php:785
 msgid ""
 "If installed, displays version and statistics (pending/running/failed "
 "actions)."
 msgstr ""
-"Если установлен, отображает версию и статистику "
-"(ожидание/выполнение/неудачные действия)."
+"Если установлено, отображает версию и статистику "
+"(ожидающие/выполняемые/неудачные действия)."
 
-#: src/Admin/AdminPage.php:131
+#: src/Admin/AdminPage.php:2369
+msgid ""
+"If the worker is not running, queues will not be processed in daemon mode. "
+"Make sure the process is started and monitored."
+msgstr ""
+"Если воркер не запущен, очереди в режиме демона обрабатываться не будут. "
+"Убедитесь, что процесс запущен и мониторится."
+
+#: src/Admin/AdminPage.php:2309
+msgid ""
+"If WP-CLI is not available, create a PHP script that boots WordPress and "
+"runs the worker loop:"
+msgstr ""
+"Если WP-CLI недоступен, создайте PHP-скрипт, который загружает WordPress и "
+"запускает цикл воркера:"
+
+#: src/Admin/AdminPage.php:134
 msgid ""
 "If you installed WP Queue because another plugin requires it, you usually do "
 "not need to configure anything here. Use these tabs mainly for monitoring "
 "and troubleshooting."
 msgstr ""
-"Если вы установили WP Queue, потому что другой плагин требует его, обычно "
-"вам не нужно ничего настраивать здесь. Используйте эти вкладки в основном "
-"для мониторинга и устранения неполадок."
+"Если вы установили WP Queue, потому что он требуется другому плагину, обычно "
+"здесь ничего настраивать не нужно. Используйте эти вкладки в основном для "
+"мониторинга и устранения неполадок."
 
-#: src/Admin/AdminPage.php:1116
+#: src/Admin/AdminPage.php:1119
 msgid "Important:"
 msgstr "Важно:"
 
-#: src/Admin/AdminPage.php:344
+#: src/Admin/AdminPage.php:347
 msgid "In Queue"
 msgstr "В очереди"
 
-#: src/Admin/AdminPage.php:113
+#: src/Admin/AdminPage.php:2299
+msgid ""
+"In this mode WP-Cron scheduling and loopback requests are disabled "
+"automatically."
+msgstr ""
+"В этом режиме планирование WP-Cron и loopback-запросы отключаются "
+"автоматически."
+
+#: src/Admin/AdminPage.php:116
 msgid "Inspect and manage WP-Cron events for WP Queue and other plugins."
 msgstr ""
-"Проверяйте и управляйте WP-Cron событиями для WP Queue и других плагинов."
+"Проверяйте и управляйте событиями WP-Cron для WP Queue и других плагинов."
 
-#: src/Admin/AdminPage.php:1081
+#: src/Admin/AdminPage.php:1084
 msgid "Install: pecl install memcached"
-msgstr "Установка: pecl install memcached"
+msgstr "Установите: pecl install memcached"
 
-#: src/Admin/AdminPage.php:1079
+#: src/Admin/AdminPage.php:1082
 msgid "Install: pecl install redis"
-msgstr "Установка: pecl install redis"
+msgstr "Установите: pecl install redis"
 
-#: src/Admin/AdminPage.php:1585
+#: src/Admin/AdminPage.php:1588
 msgid "Interval"
 msgstr "Интервал"
 
-#: src/Admin/AdminPage.php:590 src/Admin/AdminPage.php:874
-#: src/Admin/AdminPage.php:958 src/Admin/AdminPage.php:1162
+#: src/Admin/AdminPage.php:593 src/Admin/AdminPage.php:877
+#: src/Admin/AdminPage.php:961 src/Admin/AdminPage.php:1165
 msgid "Job"
 msgstr "Задача"
 
-#: src/Admin/AdminPage.php:477
+#: src/Admin/AdminPage.php:480
 msgid "Job Class"
-msgstr "Класс задачи"
+msgstr "Job Class"
 
-#: src/Admin/AdminPage.php:731
+#: src/Admin/AdminPage.php:734
 msgid ""
 "Job class, execution interval (e.g., \"hourly\", \"daily\"), queue "
 "assignment, next run time."
 msgstr ""
-"Класс задачи, интервал выполнения (например, \"ежечасно\", \"ежедневно\"), "
-"назначение очереди, время следующего запуска."
+"Класс Job, интервал выполнения (например, \"ежечасно\", \"ежедневно\"), "
+"назначение в очередь, время следующего запуска."
 
-#: src/Admin/AdminPage.php:564
+#: src/Admin/AdminPage.php:567
 msgid "Job Details"
-msgstr "Детали задачи"
+msgstr "Job Details"
 
-#: src/Admin/AdminPage.php:731
+#: src/Admin/AdminPage.php:734
 msgid "Job information"
-msgstr "Информация о задаче"
+msgstr "Job information"
 
-#: src/Admin/AdminPage.php:730
+#: src/Admin/AdminPage.php:733
 msgid "Job list"
-msgstr "Список задач"
+msgstr "Список Job"
 
-#: src/Admin/AdminPage.php:384
+#: src/Admin/AdminPage.php:387
 msgid "jobs"
 msgstr "задачи"
 
-#: src/Admin/AdminPage.php:43
+#: src/Admin/AdminPage.php:45
 msgid "Jobs in Queue"
 msgstr "Задачи в очереди"
 
-#: src/Admin/AdminPage.php:747
+#: src/Admin/AdminPage.php:750
 msgid "Log table"
-msgstr "Таблица журнала"
+msgstr "Таблица логов"
 
-#: src/Admin/AdminPage.php:741
+#: src/Admin/AdminPage.php:744
 msgid "Logs"
-msgstr "Журналы"
+msgstr "Логи"
 
-#: src/Admin/AdminPage.php:127
+#: src/Admin/AdminPage.php:130
 msgid ""
 "Logs – history of completed and failed jobs that helps to diagnose problems."
 msgstr ""
-"Журналы – история завершенных и неудачных задач, которые помогают "
+"Логи — история выполненных и неудачных заданий, которая помогает "
 "диагностировать проблемы."
 
-#: src/Admin/AdminPage.php:1877
+#: src/Admin/AdminPage.php:1916
 msgid "Loopback"
 msgstr "Обратная связь"
+
+#: src/Admin/AdminPage.php:1879
+msgid ""
+"Loopback is disabled. Jobs will be processed only by WP-Cron, which can "
+"delay execution by up to one minute. Run a daemon worker for instant "
+"processing."
+msgstr ""
+"Loopback отключен. Задачи будут обрабатываться только WP-Cron с задержкой до "
+"минуты. Запустите демон-воркер для мгновенной обработки."
+
+#: src/Admin/AdminPage.php:1871
+msgid "Loopback is enabled and working. Jobs start immediately after dispatch."
+msgstr "Loopback включен и работает. Задачи запускаются сразу после отправки."
+
+#: src/Admin/AdminPage.php:1875
+msgid ""
+"Loopback is inactive. Jobs will be processed only by WP-Cron, which can "
+"delay execution by up to one minute. Enable loopback or run a daemon worker "
+"for instant processing."
+msgstr ""
+"Loopback неактивен. Задачи будут обрабатываться только WP-Cron с задержкой "
+"до минуты. Включите loopback или запустите демон-воркер для мгновенной "
+"обработки."
 
 #. %s: loopback error message
 #: src/Admin/SystemStatus.php:271
@@ -790,7 +891,7 @@ msgstr "Обратная связь"
 msgid "Loopback issue: %s"
 msgstr "Проблема обратной связи: %s"
 
-#: src/Admin/AdminPage.php:1719
+#: src/Admin/AdminPage.php:1722
 msgid "Loopback Request"
 msgstr "Запрос обратной связи"
 
@@ -798,192 +899,207 @@ msgstr "Запрос обратной связи"
 msgid "Loopback request successful"
 msgstr "Запрос обратной связи выполнен успешно"
 
-#: src/Admin/AdminPage.php:2139
+#: src/Admin/AdminPage.php:2181
 msgid "Manage queues from command line:"
 msgstr "Управление очередями из командной строки:"
 
-#: src/Admin/AdminPage.php:728
+#: src/Admin/AdminPage.php:731
 msgid "Management of scheduled recurring tasks."
 msgstr "Управление запланированными повторяющимися задачами."
 
-#: src/Admin/AdminPage.php:760
+#: src/Admin/AdminPage.php:763
 msgid ""
 "Management of WordPress system timers that trigger background processes."
 msgstr ""
-"Управление системными таймерами WordPress, которые запускают фоновые "
-"процессы."
+"Управление системными таймерами WordPress, запускающими фоновые процессы."
 
-#: src/Admin/AdminPage.php:732
+#: src/Admin/AdminPage.php:735
 msgid "Manual run"
 msgstr "Ручной запуск"
 
-#: src/Admin/AdminPage.php:1684 src/Admin/AdminPage.php:1911
+#: src/Admin/AdminPage.php:1687 src/Admin/AdminPage.php:1953
 msgid "Max Execution Time"
 msgstr "Максимальное время выполнения"
 
-#: src/Admin/AdminPage.php:1673 src/Admin/AdminPage.php:1828
-#: src/Admin/AdminPage.php:1903
+#: src/Admin/AdminPage.php:1676 src/Admin/AdminPage.php:1831
+#: src/Admin/AdminPage.php:1945
 msgid "Memory Limit"
-msgstr "Лимит памяти"
+msgstr "Ограничение памяти"
 
 #: src/Admin/SystemStatus.php:275
 msgid "Memory usage is above 80%."
 msgstr "Использование памяти выше 80%."
 
-#: src/Admin/AdminPage.php:876
+#: src/Admin/AdminPage.php:879
 msgid "Message"
 msgstr "Сообщение"
 
-#: src/Admin/AdminPage.php:111
+#: src/Admin/AdminPage.php:114
 msgid "Monitor which background jobs are queued and running right now."
 msgstr ""
-"Отслеживайте, какие фоновые задачи находятся в очереди и выполняются прямо "
-"сейчас."
+"Отслеживайте, какие фоновые задачи находятся в очереди и выполняются в "
+"данный момент."
 
-#: src/Admin/AdminPage.php:790
+#: src/Admin/AdminPage.php:793
 msgid "More documentation"
 msgstr "Дополнительная документация"
 
-#: src/Admin/AdminPage.php:1584
+#: src/Admin/AdminPage.php:1587
 msgid "Name"
 msgstr "Имя"
 
-#: src/Admin/AdminPage.php:2076
+#: src/Admin/AdminPage.php:2118
 msgid "Named Queues"
 msgstr "Именованные очереди"
 
-#: src/Admin/AdminPage.php:593 src/Admin/AdminPage.php:1403
-#: src/Admin/AdminPage.php:1480
+#: src/Admin/AdminPage.php:596 src/Admin/AdminPage.php:1406
+#: src/Admin/AdminPage.php:1483
 msgid "Next Run"
 msgstr "Следующий запуск"
 
-#: src/Admin/AdminPage.php:733
+#: src/Admin/AdminPage.php:736
 msgid "Next run status"
 msgstr "Статус следующего запуска"
 
-#: src/Admin/AdminPage.php:1168
+#: src/Admin/AdminPage.php:1171
 msgid "No activity"
 msgstr "Нет активности"
 
-#: src/Admin/AdminPage.php:1489
+#: src/Admin/AdminPage.php:1492
 msgid "No cron events found."
-msgstr "Cron-события не найдены."
+msgstr "Событий cron не обнаружено."
 
-#: src/Admin/AdminPage.php:967
+#: src/Admin/AdminPage.php:970
 msgid "No errors"
-msgstr "Нет ошибок"
+msgstr "Ошибок нет."
 
-#: src/Admin/AdminPage.php:1140
+#: src/Admin/AdminPage.php:1143
 msgid "No extension"
 msgstr "Нет расширения"
 
-#: src/Admin/AdminPage.php:882
+#: src/Admin/AdminPage.php:885
 msgid "No logs found"
 msgstr "Журналы не найдены"
 
-#: src/Admin/AdminPage.php:2198
+#: src/Admin/AdminPage.php:2246
 msgid "No paused events"
 msgstr "Нет приостановленных событий"
 
-#: src/Admin/AdminPage.php:1397
+#: src/Admin/AdminPage.php:1400
 msgid "No scheduled events"
-msgstr "Нет запланированных событий"
+msgstr "Мероприятия не запланированы."
 
-#: src/Admin/AdminPage.php:600
+#: src/Admin/AdminPage.php:603
 msgid "No scheduled jobs found."
-msgstr "Запланированные задачи не найдены."
+msgstr "Запланированных заданий не найдено."
 
-#: src/Admin/AdminPage.php:1144
+#: src/Admin/AdminPage.php:1147
 msgid "No server"
 msgstr "Нет сервера"
 
-#: src/Admin/AdminPage.php:779
+#: src/Admin/AdminPage.php:782
 msgid "Notifications of critical issues (low memory, disabled WP-Cron)."
 msgstr ""
-"Уведомления о критических проблемах (низкая память, отключенный WP-Cron)."
+"Уведомления о критических проблемах (недостаток памяти, отключение WP-Cron)."
 
-#: src/Admin/AdminPage.php:506
+#: src/Admin/AdminPage.php:509
 msgid "Now"
 msgstr "Сейчас"
 
-#: src/Admin/AdminPage.php:749
+#: src/Admin/AdminPage.php:752
 msgid "Number of entries"
 msgstr "Количество записей"
 
-#: src/Admin/AdminPage.php:1725
+#: src/Admin/AdminPage.php:1728 src/Admin/AdminPage.php:1925
 msgid "OK"
-msgstr "ОК"
+msgstr "OK"
 
-#: src/Admin/AdminPage.php:2214
+#: src/Admin/AdminPage.php:2262
 msgid "One-time"
-msgstr "Однократно"
+msgstr "Один раз"
 
-#: src/Admin/AdminPage.php:1351 src/Admin/AdminPage.php:1446
-#: src/Admin/AdminPage.php:1502 src/Admin/CronMonitor.php:220
+#: src/Admin/AdminPage.php:2331
+msgid "Option A: systemd service"
+msgstr "Вариант A: сервис systemd"
+
+#: src/Admin/AdminPage.php:2348
+msgid "Option B: Supervisor"
+msgstr "Вариант B: Supervisor"
+
+#: src/Admin/AdminPage.php:2358
+msgid "Option C: Docker Compose"
+msgstr "Вариант C: Docker Compose"
+
+#: src/Admin/AdminPage.php:2364
+msgid "Option D: plain PHP script"
+msgstr "Вариант D: простой PHP-скрипт"
+
+#: src/Admin/AdminPage.php:1354 src/Admin/AdminPage.php:1449
+#: src/Admin/AdminPage.php:1505 src/Admin/CronMonitor.php:220
 msgid "Overdue"
 msgstr "Просрочено"
 
-#: src/Admin/AdminPage.php:42 src/Admin/AdminPage.php:49
-#: src/Admin/AdminPage.php:250
+#: src/Admin/AdminPage.php:44 src/Admin/AdminPage.php:51
+#: src/Admin/AdminPage.php:253
 msgid "Overview"
 msgstr "Обзор"
 
-#: src/Admin/AdminPage.php:442 src/Admin/AdminPage.php:1532
-#: src/Admin/AdminPage.php:1533
+#: src/Admin/AdminPage.php:445 src/Admin/AdminPage.php:1535
+#: src/Admin/AdminPage.php:1536
 msgid "Pause"
-msgstr "Приостановить"
+msgstr "Пауза"
 
-#: src/Admin/AdminPage.php:197
+#: src/Admin/AdminPage.php:200
 msgid "Pause this queue?"
-msgstr "Приостановить эту очередь?"
+msgstr "Приостановить выполнение этой очереди?"
 
-#: src/Admin/AdminPage.php:52 src/Admin/AdminPage.php:325
-#: src/Admin/AdminPage.php:424 src/Admin/AdminPage.php:1355
+#: src/Admin/AdminPage.php:54 src/Admin/AdminPage.php:328
+#: src/Admin/AdminPage.php:427 src/Admin/AdminPage.php:1358
 msgid "Paused"
 msgstr "Приостановлено"
 
-#: src/Admin/AdminPage.php:1557
+#: src/Admin/AdminPage.php:1560
 msgid "Paused At"
-msgstr "Приостановлено в"
+msgstr "Приостановлено на"
 
-#: src/Admin/AdminPage.php:1551
+#: src/Admin/AdminPage.php:1554
 msgid "Paused Events"
 msgstr "Приостановленные события"
 
-#: src/Admin/AdminPage.php:765
+#: src/Admin/AdminPage.php:768
 msgid "Paused events"
 msgstr "Приостановленные события"
 
-#: src/Admin/AdminPage.php:2206
+#: src/Admin/AdminPage.php:2254
 msgid "Paused Since"
 msgstr "Приостановлено с"
 
-#: src/Admin/AdminPage.php:323 src/Admin/AdminPage.php:464
-#: src/Admin/AdminPage.php:1951
+#: src/Admin/AdminPage.php:326 src/Admin/AdminPage.php:467
+#: src/Admin/AdminPage.php:1993
 msgid "Pending"
-msgstr "Ожидание"
+msgstr "В ожидании"
 
-#: src/Admin/AdminPage.php:1752
+#: src/Admin/AdminPage.php:1755
 msgid "Pending Actions"
 msgstr "Ожидающие действия"
 
-#: src/Admin/AdminPage.php:1849 src/Admin/AdminPage.php:1899
+#: src/Admin/AdminPage.php:1852 src/Admin/AdminPage.php:1941
 msgid "PHP"
 msgstr "PHP"
 
-#: src/Admin/AdminPage.php:780
+#: src/Admin/AdminPage.php:783
 msgid ""
 "PHP and WordPress versions, memory limits (current usage), maximum execution "
 "time, timezone."
 msgstr ""
-"Версии PHP и WordPress, лимиты памяти (текущее использование), максимальное "
-"время выполнения, часовой пояс."
+"Версии PHP и WordPress, ограничения памяти (текущее использование), "
+"максимальное время выполнения, часовой пояс."
 
-#: src/QueueManager.php:288
+#: src/QueueManager.php:470
 msgid "PHP extension \"memcached\" is not installed"
 msgstr "PHP-расширение \"memcached\" не установлено"
 
-#: src/QueueManager.php:235
+#: src/QueueManager.php:267
 msgid "PHP extension \"redis\" (phpredis) is not installed"
 msgstr "PHP-расширение \"redis\" (phpredis) не установлено"
 
@@ -991,294 +1107,349 @@ msgstr "PHP-расширение \"redis\" (phpredis) не установлен�
 msgid "PHP max_execution_time is less than 30 seconds."
 msgstr "PHP max_execution_time меньше 30 секунд."
 
-#: src/Admin/AdminPage.php:1665
+#: src/Admin/AdminPage.php:1668
 msgid "PHP Version"
 msgstr "Версия PHP"
 
-#: src/Admin/AdminPage.php:1471
+#: src/Admin/AdminPage.php:1474
 msgid "Plugins"
 msgstr "Плагины"
 
-#: src/Admin/AdminPage.php:667
-msgid "Process"
-msgstr "Обработать"
+#: src/QueueManager.php:416
+msgid "Predis library is not available"
+msgstr "Библиотека Predis недоступна"
 
-#: src/Admin/AdminPage.php:447 src/Admin/AdminPage.php:1989
+#: src/Admin/AdminPage.php:670
+msgid "Process"
+msgstr "Процесс"
+
+#: src/Admin/AdminPage.php:450 src/Admin/AdminPage.php:2031
 msgid "Process Now"
 msgstr "Обработать сейчас"
 
-#: src/Admin/AdminPage.php:1987
+#: src/Admin/AdminPage.php:2029
 msgid "Process Queues"
-msgstr "Обработать очереди"
+msgstr "Обработочные очереди"
 
-#: src/Admin/AdminPage.php:426 src/Admin/AdminPage.php:468
+#: src/Admin/AdminPage.php:429 src/Admin/AdminPage.php:471
 msgid "Processing"
 msgstr "Обработка"
 
-#: src/Admin/AdminPage.php:592 src/Admin/AdminPage.php:875
-#: src/Admin/AdminPage.php:959
+#: src/Admin/AdminPage.php:595 src/Admin/AdminPage.php:878
+#: src/Admin/AdminPage.php:962
 msgid "Queue"
 msgstr "Очередь"
 
-#: src/Admin/AdminPage.php:1860
-msgid "Queue Driver"
-msgstr "Драйвер очереди"
+#: src/Admin/AdminPage.php:1895
+msgid "Queue handler"
+msgstr "Обработчик очереди"
 
-#: src/Admin/AdminPage.php:487
+#: src/Admin/AdminPage.php:490
 msgid "Queue is empty"
 msgstr "Очередь пуста"
 
-#: src/Admin/AdminPage.php:715
+#: src/Admin/AdminPage.php:718
 msgid "Queue statistics"
 msgstr "Статистика очереди"
 
-#: src/Admin/AdminPage.php:716
+#: src/Admin/AdminPage.php:1889
+msgid "Queue Storage backend"
+msgstr "бэкэнд хранилища очередей"
+
+#: src/Admin/AdminPage.php:719
 msgid "Queue table"
 msgstr "Таблица очереди"
 
-#: src/Admin/AdminPage.php:420
+#: src/Admin/AdminPage.php:423
 #, php-format
 msgid "Queue: %s"
 msgstr "Очередь: %s"
 
-#: src/Admin/AdminPage.php:35 src/Admin/AdminPage.php:371
+#: src/Admin/AdminPage.php:37 src/Admin/AdminPage.php:374
 msgid "Queues"
 msgstr "Очереди"
 
-#: src/Admin/AdminPage.php:2037
+#: src/Admin/AdminPage.php:2079
 msgid "Quick Start"
 msgstr "Быстрый старт"
 
-#: src/Admin/AdminPage.php:112
+#: src/Admin/AdminPage.php:115
 msgid "Quickly see if any jobs are failing and view recent log entries."
 msgstr ""
-"Быстро проверьте, не завершаются ли задачи неудачей, и просмотрите недавние "
-"записи журнала."
+"Быстро проверьте, не завершаются ли какие-либо задания с ошибкой, и "
+"просмотрите последние записи в журнале."
 
-#: src/Admin/AdminPage.php:1136
+#: src/Admin/AdminPage.php:1139
 msgid "Ready"
 msgstr "Готово"
 
-#: src/Admin/AdminPage.php:395
+#: src/Admin/AdminPage.php:398
 msgid "Recent Activity"
-msgstr "Недавняя активность"
+msgstr "Последние события"
 
-#: src/Admin/AdminPage.php:717
+#: src/Admin/AdminPage.php:720
 msgid "Recent activity"
-msgstr "Недавняя активность"
+msgstr "Последние события"
 
-#: src/Admin/AdminPage.php:696
+#: src/QueueManager.php:358
+msgid "Redis connection failed"
+msgstr "Подключение к Redis не удалось."
+
+#: src/QueueManager.php:243
+msgid "Redis is disabled via WP_REDIS_DISABLED"
+msgstr "Redis отключен с помощью WP_REDIS_DISABLED"
+
+#: src/Admin/AdminPage.php:699
 msgid "Redis Support"
 msgstr "Поддержка Redis"
 
-#: src/Admin/AdminPage.php:1580
+#: src/Admin/AdminPage.php:1583
 msgid "Registered Schedules"
 msgstr "Зарегистрированные расписания"
 
-#: src/Admin/AdminPage.php:766
+#: src/Admin/AdminPage.php:769
 msgid "Registered schedules"
 msgstr "Зарегистрированные расписания"
 
-#: src/Admin/AdminPage.php:2170
+#: src/Admin/AdminPage.php:2212
 msgid "Report an Issue"
 msgstr "Сообщить о проблеме"
 
-#: src/Admin/AdminPage.php:166
+#: src/Admin/AdminPage.php:169
 msgid "Report Issues"
 msgstr "Сообщить о проблемах"
 
-#: src/Admin/AdminPage.php:437 src/Admin/AdminPage.php:1571
-#: src/Admin/AdminPage.php:2220
+#: src/Admin/AdminPage.php:440 src/Admin/AdminPage.php:1574
+#: src/Admin/AdminPage.php:2268
 msgid "Resume"
-msgstr "Возобновить"
+msgstr "Резюме"
 
-#: src/Admin/AdminPage.php:2094
+#: src/Admin/AdminPage.php:2136
 msgid "Retry Attempts"
-msgstr "Попытки повтора"
+msgstr "Повторные попытки"
 
-#: src/Admin/AdminPage.php:143 src/Admin/AdminPage.php:1518
+#: src/Admin/AdminPage.php:146 src/Admin/AdminPage.php:1521
 msgid "Run"
-msgstr "Запустить"
+msgstr "Запуск"
 
-#: src/Admin/AdminPage.php:622 src/Admin/AdminPage.php:1517
+#: src/Admin/AdminPage.php:625 src/Admin/AdminPage.php:1520
 msgid "Run Now"
-msgstr "Запустить сейчас"
+msgstr "Запустите сейчас"
 
-#: src/Admin/AdminPage.php:764
+#: src/Admin/AdminPage.php:767
 msgid ""
 "Run now, edit schedule, pause, delete. Modal window for changing interval."
 msgstr ""
-"Запустить сейчас, редактировать расписание, приостановить, удалить. "
+"Запустить сейчас, отредактировать расписание, приостановить, удалить. "
 "Модальное окно для изменения интервала."
 
-#: src/Admin/AdminPage.php:2116
+#: src/Admin/AdminPage.php:2158
 msgid "Run tasks on schedule:"
-msgstr "Выполнять задачи по расписанию:"
+msgstr "Выполнить задачи по расписанию:"
 
-#: src/Admin/AdminPage.php:324 src/Admin/AdminPage.php:348
+#: src/Admin/AdminPage.php:327 src/Admin/AdminPage.php:351
 msgid "Running"
-msgstr "Выполняется"
+msgstr "Запущено"
 
-#: src/Admin/AdminPage.php:1756
+#: src/Admin/AdminPage.php:1759
 msgid "Running Actions"
-msgstr "Выполняющиеся действия"
+msgstr "Выполнение действий"
 
-#: src/Admin/AdminPage.php:1622
+#: src/Admin/AdminPage.php:2346
+msgid ""
+"Save as /etc/systemd/system/wp-queue-worker.service, then run systemctl "
+"enable --now wp-queue-worker."
+msgstr ""
+"Сохраните как /etc/systemd/system/wp-queue-worker.service, затем выполните "
+"systemctl enable --now wp-queue-worker."
+
+#: src/Admin/AdminPage.php:1625
 msgid "Save Changes"
 msgstr "Сохранить изменения"
 
-#: src/Admin/AdminPage.php:591 src/Admin/AdminPage.php:1481
-#: src/Admin/AdminPage.php:1556 src/Admin/AdminPage.php:1610
-#: src/Admin/AdminPage.php:2205
+#: src/Admin/AdminPage.php:2324
+msgid "Save the script, make it executable and run it in the background:"
+msgstr "Сохраните скрипт, сделайте его исполняемым и запустите в фоне:"
+
+#: src/Admin/AdminPage.php:594 src/Admin/AdminPage.php:1484
+#: src/Admin/AdminPage.php:1559 src/Admin/AdminPage.php:1613
+#: src/Admin/AdminPage.php:2253
 msgid "Schedule"
 msgstr "Расписание"
 
-#: src/Admin/AdminPage.php:2057
+#: src/Admin/AdminPage.php:2099
 msgid "Schedule a job to run after a specific time:"
-msgstr "Запланировать выполнение задачи после определенного времени:"
+msgstr "Настройте выполнение задания по истечении определенного времени:"
 
-#: src/Admin/AdminPage.php:51 src/Admin/AdminPage.php:1347
+#: src/Admin/AdminPage.php:53 src/Admin/AdminPage.php:1350
 msgid "Scheduled"
 msgstr "Запланировано"
 
-#: src/Admin/AdminPage.php:725
+#: src/Admin/AdminPage.php:728
 msgid "Scheduled Jobs"
-msgstr "Запланированные задачи"
+msgstr "Запланированные задания"
 
-#: src/Admin/AdminPage.php:126
+#: src/Admin/AdminPage.php:129
 msgid ""
 "Scheduled Jobs – list of recurring background jobs added by your theme or "
 "plugins."
 msgstr ""
-"Запланированные задачи – список повторяющихся фоновых задач, добавленных "
+"Запланированные задания — список повторяющихся фоновых заданий, добавленных "
 "вашей темой или плагинами."
 
-#: src/Admin/AdminPage.php:36 src/Admin/AdminPage.php:2115
+#: src/Admin/AdminPage.php:38 src/Admin/AdminPage.php:2157
 msgid "Scheduler"
 msgstr "Планировщик"
 
-#: src/Admin/AdminPage.php:1776 src/Admin/AdminPage.php:1780
-#: src/Admin/AdminPage.php:1922
+#: src/Admin/AdminPage.php:1779 src/Admin/AdminPage.php:1783
+#: src/Admin/AdminPage.php:1964
 msgid "Server Time"
-msgstr "Серверное время"
+msgstr "Время сервера"
 
-#: src/Admin/AdminPage.php:783
+#: src/Admin/AdminPage.php:786
 msgid "Server time"
-msgstr "Серверное время"
+msgstr "Время сервера"
 
-#: src/Admin/AdminPage.php:1507 src/Admin/AdminPage.php:1565
+#: src/Admin/AdminPage.php:1510 src/Admin/AdminPage.php:1568
 msgid "Single"
-msgstr "Одиночный"
+msgstr "Один"
 
-#: src/Admin/AdminPage.php:1612
+#: src/Admin/AdminPage.php:1615
 msgid "Single (run once)"
-msgstr "Одиночный (выполнить один раз)"
+msgstr "Один (запуск один раз)"
 
-#: src/Admin/AdminPage.php:1404 src/Admin/AdminPage.php:1482
+#: src/Admin/AdminPage.php:1407 src/Admin/AdminPage.php:1485
 msgid "Source"
 msgstr "Источник"
 
-#: src/Admin/AdminPage.php:480 src/Admin/AdminPage.php:873
-#: src/Admin/AdminPage.php:1053 src/Admin/AdminPage.php:1161
+#: src/Admin/AdminPage.php:2304
+msgid "Start the worker from the WordPress root:"
+msgstr "Запустите воркер из корня WordPress:"
+
+#: src/Admin/AdminPage.php:483 src/Admin/AdminPage.php:876
+#: src/Admin/AdminPage.php:1056 src/Admin/AdminPage.php:1164
 msgid "Status"
 msgstr "Статус"
 
-#: src/Admin/AdminPage.php:746
+#: src/Admin/AdminPage.php:749
 msgid "Status filters"
-msgstr "Фильтры статуса"
+msgstr "Фильтры состояния"
 
-#: src/Admin/AdminPage.php:665
+#: src/Admin/AdminPage.php:668
 msgid "Storage"
 msgstr "Хранилище"
+
+#: src/Admin/AdminPage.php:1055
+msgid "Storage backend"
+msgstr "бэкэнд хранилища"
+
+#: src/Admin/AdminPage.php:1034
+#, php-format
+msgid ""
+"Storage backend \"%s\" is configured in wp-config.php, but not available. "
+"Falling back to \"%s\"."
+msgstr ""
+"В файле wp-config.php настроен бэкэнд хранилища \"%s\", но он недоступен. "
+"Используется резервный вариант \"%s\"."
 
 #: src/QueueManager.php:198
 msgid "Synchronous execution (no queue)"
 msgstr "Синхронное выполнение (без очереди)"
 
-#: src/Admin/AdminPage.php:37 src/Admin/AdminPage.php:774
+#: src/Admin/AdminPage.php:39 src/Admin/AdminPage.php:777
 msgid "System"
 msgstr "Система"
 
-#: src/Admin/AdminPage.php:686
+#: src/Admin/AdminPage.php:689
 msgid "System Cron (Recommended)"
-msgstr "Системный Cron (Рекомендуется)"
+msgstr "Системный планировщик задач (рекомендуется)"
 
-#: src/Admin/AdminPage.php:779
+#: src/Admin/AdminPage.php:782
 msgid "System health"
-msgstr "Системное здоровье"
+msgstr "Здоровье системы"
 
-#: src/Admin/AdminPage.php:1648
+#: src/Admin/AdminPage.php:1651
 msgid "System Issues Detected:"
-msgstr "Обнаружены системные проблемы:"
+msgstr "Обнаружены системные неполадки:"
 
-#: src/Admin/AdminPage.php:55
+#: src/Admin/AdminPage.php:57
 msgid "System Status"
-msgstr "Системный статус"
+msgstr "Состояние системы"
 
-#: src/Admin/AdminPage.php:129
+#: src/Admin/AdminPage.php:132
 msgid ""
 "System – checks PHP version, WP-Cron status and other important settings."
 msgstr ""
-"Система – проверяет версию PHP, статус WP-Cron и другие важные настройки."
+"Система проверяет версию PHP, статус WP-Cron и другие важные настройки."
 
-#: src/Admin/AdminPage.php:732
+#: src/Admin/AdminPage.php:735
 msgid ""
 "The \"Run Now\" button allows you to run any job immediately, without "
 "waiting for the schedule."
 msgstr ""
-"Кнопка \"Запустить сейчас\" позволяет запустить любую задачу немедленно, без "
-"ожидания расписания."
+"Кнопка «Запустить сейчас» позволяет немедленно запустить любое задание, не "
+"дожидаясь расписания."
 
-#: src/Admin/AdminPage.php:665
+#: src/Admin/AdminPage.php:2329
+msgid ""
+"The command above must stay alive. In production use one of the options "
+"below."
+msgstr ""
+"Команда выше должна оставаться запущенной. В продакшене используйте один из "
+"вариантов ниже."
+
+#: src/Admin/AdminPage.php:668
 msgid "The job is saved in the database (or Redis) waiting to be picked up."
-msgstr "Задача сохраняется в базе данных (или Redis) в ожидании обработки."
+msgstr "Задание сохраняется в базе данных (или Redis) в ожидании обработки."
 
-#: src/Admin/AdminPage.php:717
+#: src/Admin/AdminPage.php:720
 msgid "The last 10 log entries for quick tracking of queue activity."
 msgstr ""
-"Последние 10 записей журнала для быстрого отслеживания активности очереди."
+"Последние 10 записей в журнале для быстрого отслеживания активности в "
+"очереди."
 
-#: src/Admin/AdminPage.php:713
+#: src/Admin/AdminPage.php:716
 msgid "The main tab for monitoring queue status in real-time."
-msgstr "Основная вкладка для мониторинга статуса очереди в реальном времени."
+msgstr ""
+"Главная вкладка для мониторинга состояния очереди в режиме реального времени."
 
-#: src/Admin/AdminPage.php:108
+#: src/Admin/AdminPage.php:111
 msgid ""
 "The plugin itself does not add new features to the frontend. It provides a "
 "reliable queue that other plugins or your custom code can use for background "
 "work."
 msgstr ""
-"Сам плагин не добавляет новые функции на фронтенд. Он предоставляет надежную "
-"очередь, которую другие плагины или ваш кастомный код могут использовать для "
-"фоновой работы."
+"Сам плагин не добавляет новых функций на фронтенд. Он предоставляет надежную "
+"очередь, которую другие плагины или ваш пользовательский код могут "
+"использовать для фоновой работы."
 
-#: src/Admin/AdminPage.php:667
+#: src/Admin/AdminPage.php:670
 msgid ""
 "The worker picks up the job and executes it. If it succeeds, it is marked as "
 "\"Completed\". If it fails, it can be retried."
 msgstr ""
-"Рабочий процесс забирает задачу и выполняет ее. В случае успеха она "
-"отмечается как \"Завершено\". В случае неудачи ее можно повторить."
+"Работник берет задание и выполняет его. Если оно выполняется успешно, оно "
+"помечается как «Завершено». Если оно не выполняется, его можно повторить."
 
-#: src/Admin/AdminPage.php:314
+#: src/Admin/AdminPage.php:317
 msgid "This section is under development."
 msgstr "Этот раздел находится в разработке."
 
-#: src/Admin/AdminPage.php:872 src/Admin/AdminPage.php:957
-#: src/Admin/AdminPage.php:1160 src/Admin/AdminPage.php:1918
+#: src/Admin/AdminPage.php:875 src/Admin/AdminPage.php:960
+#: src/Admin/AdminPage.php:1163 src/Admin/AdminPage.php:1960
 msgid "Time"
 msgstr "Время"
 
-#: src/Admin/AdminPage.php:1832
+#: src/Admin/AdminPage.php:1835
 msgid "Timeout"
 msgstr "Тайм-аут"
 
-#: src/Admin/AdminPage.php:1688 src/Admin/AdminPage.php:1930
+#: src/Admin/AdminPage.php:1691 src/Admin/AdminPage.php:1972
 msgid "Timezone"
 msgstr "Часовой пояс"
 
 #. %s: URL to GitHub repository
-#: src/Admin/AdminPage.php:135
+#: src/Admin/AdminPage.php:138
 #, php-format
 msgid ""
 "To add your own background jobs, use the WP Queue PHP API from your plugin "
@@ -1286,51 +1457,52 @@ msgid ""
 "Full code examples are available in the <a href=\"%s\" target=\"_blank\">"
 "README on GitHub</a>."
 msgstr ""
-"Чтобы добавить свои фоновые задачи, используйте PHP API WP Queue из вашего "
-"плагина или темы. Вы можете отправлять задачи в разные очереди, "
+"Чтобы добавить собственные фоновые задачи, используйте PHP API WP Queue из "
+"вашего плагина или темы. Вы можете отправлять задачи в разные очереди, "
 "устанавливать задержки и повторные попытки. Полные примеры кода доступны в "
-"<a href=\"%s\" target=\"_blank\">README на GitHub</a>."
+"<a href=\"%s\" target=\"_blank\">файле README на GitHub</a> ."
 
-#: src/Admin/AdminPage.php:143
+#: src/Admin/AdminPage.php:146
 msgid "to get a list of available commands."
 msgstr "чтобы получить список доступных команд."
 
-#: src/Admin/AdminPage.php:672
+#: src/Admin/AdminPage.php:675
 msgid ""
 "To process the queue, WordPress needs a trigger. There are two ways to do "
 "this:"
 msgstr ""
-"Для обработки очереди WordPress нужен триггер. Есть два способа это сделать:"
+"Для обработки очереди WordPress необходим триггер. Это можно сделать двумя "
+"способами:"
 
-#: src/Admin/AdminPage.php:56 src/Admin/AdminPage.php:1977
+#: src/Admin/AdminPage.php:59 src/Admin/AdminPage.php:2019
 msgid "Tools"
 msgstr "Инструменты"
 
-#: src/Admin/AdminPage.php:1442
+#: src/Admin/AdminPage.php:1445
 msgid "Total"
 msgstr "Всего"
 
-#: src/Admin/AdminPage.php:950
+#: src/Admin/AdminPage.php:953
 msgid "Total errors"
-msgstr "Всего ошибок"
+msgstr "Общее количество ошибок"
 
-#: src/Admin/AdminPage.php:1343
+#: src/Admin/AdminPage.php:1346
 msgid "Total Events"
 msgstr "Всего событий"
 
-#: src/Admin/AdminPage.php:460
+#: src/Admin/AdminPage.php:463
 msgid "Total Jobs"
-msgstr "Всего задач"
+msgstr "Общее количество рабочих мест"
 
-#: src/Admin/AdminPage.php:762
+#: src/Admin/AdminPage.php:765
 msgid ""
 "Total number of events, overdue, grouped by source (WordPress, WooCommerce, "
 "WP Queue, plugins)."
 msgstr ""
-"Общее количество событий, просроченных, сгруппированных по источнику "
+"Общее количество просроченных событий, сгруппированных по источнику "
 "(WordPress, WooCommerce, WP Queue, плагины)."
 
-#: src/Admin/AdminPage.php:1148
+#: src/Admin/AdminPage.php:1151
 msgid "Unavailable"
 msgstr "Недоступно"
 
@@ -1339,7 +1511,8 @@ msgstr "Недоступно"
 msgid "Unexpected response code: %d"
 msgstr "Неожиданный код ответа: %d"
 
-#: src/Admin/AdminPage.php:494 src/Admin/AdminPage.php:1264
+#: src/Admin/AdminPage.php:497 src/Admin/AdminPage.php:1267
+#: src/Admin/AdminPage.php:1928
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -1347,19 +1520,41 @@ msgstr "Неизвестно"
 msgid "Unknown driver"
 msgstr "Неизвестный драйвер"
 
-#: src/Admin/AdminPage.php:1393
+#: src/Admin/AdminPage.php:1396
 msgid "Upcoming Events"
 msgstr "Предстоящие события"
 
-#: src/Admin/AdminPage.php:91
+#: src/Admin/AdminPage.php:94
 msgid "Usage"
 msgstr "Использование"
 
-#: src/Admin/AdminPage.php:1365
-msgid "Use system cron"
-msgstr "Использовать системный cron"
+#: src/Admin/AdminPage.php:2294
+msgid ""
+"Use a daemon worker on VPS, Docker or dedicated servers where you can keep a "
+"process running. It polls the queue continuously and starts jobs immediately."
+" Without a daemon, WP Queue relies on WP-Cron and/or loopback, which can "
+"delay jobs by up to a minute."
+msgstr ""
+"Запускайте демон-воркер на VPS, Docker или выделенном сервере, где можно "
+"держать процесс запущенным. Он постоянно опрашивает очередь и сразу "
+"запускает задания. Без демона WP Queue полагается на WP-Cron и/или loopback, "
+"что может задерживать задания до минуты."
 
-#: src/Admin/AdminPage.php:719
+#: src/Admin/AdminPage.php:1368
+msgid "Use system cron"
+msgstr "Используйте системный cron"
+
+#: src/Admin/AdminPage.php:2365
+msgid ""
+"Use the script from step 2 (Without WP-CLI) inside screen, tmux or a simple "
+"cron-based restart loop. Remember that the script must stay alive to act as "
+"a daemon."
+msgstr ""
+"Используйте скрипт из шага 2 (Без WP-CLI) внутри screen, tmux или простого "
+"цикла перезапуска через cron. Помните, что скрипт должен оставаться "
+"запущенным, чтобы работать как демон."
+
+#: src/Admin/AdminPage.php:722
 msgid ""
 "Use this tab for quick checks of queue performance and identifying stuck "
 "processes."
@@ -1367,15 +1562,15 @@ msgstr ""
 "Используйте эту вкладку для быстрой проверки производительности очереди и "
 "выявления зависших процессов."
 
-#: src/Admin/AdminPage.php:1907
+#: src/Admin/AdminPage.php:1949
 msgid "Used"
-msgstr "Использовано"
+msgstr "Использовал"
 
-#: src/Admin/AdminPage.php:735
+#: src/Admin/AdminPage.php:738
 msgid "Useful for testing jobs and forcing synchronizations."
-msgstr "Полезно для тестирования задач и принудительных синхронизаций."
+msgstr "Полезно для тестирования заданий и принудительной синхронизации."
 
-#: src/Admin/AdminPage.php:2159
+#: src/Admin/AdminPage.php:2201
 msgid "Useful Links"
 msgstr "Полезные ссылки"
 
@@ -1383,127 +1578,149 @@ msgstr "Полезные ссылки"
 msgid "Uses wp_options table"
 msgstr "Использует таблицу wp_options"
 
-#: src/Admin/AdminPage.php:1747 src/Admin/AdminPage.php:1946
+#: src/Admin/AdminPage.php:1750 src/Admin/AdminPage.php:1988
 msgid "Version"
 msgstr "Версия"
 
-#: src/Admin/AdminPage.php:1837
+#: src/Admin/AdminPage.php:1840
 msgid "Versions"
 msgstr "Версии"
 
-#: src/Admin/AdminPage.php:1727
+#: src/Admin/AdminPage.php:1730 src/Admin/AdminPage.php:1926
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: src/Admin/AdminPage.php:109
+#: src/Admin/AdminPage.php:112
 msgid "What you can use it for"
-msgstr "Для чего это можно использовать"
+msgstr "Для чего его можно использовать"
 
-#: src/Admin/AdminPage.php:648
+#: src/Admin/AdminPage.php:2293
+msgid "When to use a daemon"
+msgstr "Когда использовать демон"
+
+#: src/Admin/AdminPage.php:651
 msgid "Why is it needed?"
 msgstr "Зачем это нужно?"
 
-#: src/Admin/AdminPage.php:1465
+#: src/Admin/AdminPage.php:2303
+msgid "With WP-CLI"
+msgstr "С WP-CLI"
+
+#: src/Admin/AdminPage.php:2308
+msgid "Without WP-CLI"
+msgstr "Без WP-CLI"
+
+#: src/Admin/AdminPage.php:1468
 msgid "WooCommerce"
 msgstr "WooCommerce"
 
-#: src/Admin/AdminPage.php:1462 src/Admin/AdminPage.php:1845
+#: src/Admin/AdminPage.php:1465 src/Admin/AdminPage.php:1848
 msgid "WordPress"
 msgstr "WordPress"
 
-#: src/Admin/AdminPage.php:680
+#: src/Admin/AdminPage.php:683
 msgid ""
 "WordPress checks for scheduled tasks on every page load. This works out of "
 "the box but has downsides: on low-traffic sites, tasks might not run on time;"
 " on high-traffic sites, it can cause performance issues. It is \"fake\" cron."
 msgstr ""
-"WordPress проверяет запланированные задачи при каждой загрузке страницы. Это "
-"работает из коробки, но имеет недостатки: на сайтах с низким трафиком задачи "
-"могут не выполняться вовремя; на сайтах с высоким трафиком это может "
-"вызывать проблемы с производительностью. Это \"поддельный\" cron."
+"WordPress проверяет наличие запланированных задач при каждой загрузке "
+"страницы. Это работает «из коробки», но имеет свои недостатки: на сайтах с "
+"низкой посещаемостью задачи могут не выполняться вовремя; на сайтах с "
+"высокой посещаемостью это может вызывать проблемы с производительностью. Это "
+"«поддельный» cron."
 
-#: src/Admin/AdminPage.php:1784 src/Admin/AdminPage.php:1926
+#: src/Admin/AdminPage.php:1787 src/Admin/AdminPage.php:1968
 msgid "WordPress Time"
 msgstr "Время WordPress"
 
-#: src/Admin/AdminPage.php:1669
+#: src/Admin/AdminPage.php:1672
 msgid "WordPress Version"
 msgstr "Версия WordPress"
 
-#: src/Admin/AdminPage.php:666
+#: src/Admin/AdminPage.php:669
 msgid "Worker"
-msgstr "Рабочий процесс"
+msgstr "Воркер"
 
 #. Name of the plugin
-#: src/Admin/AdminPage.php:65 src/Admin/AdminPage.php:66
-#: src/Admin/AdminPage.php:1468 src/Admin/AdminPage.php:1841
+#: src/Admin/AdminPage.php:68 src/Admin/AdminPage.php:69
+#: src/Admin/AdminPage.php:1471 src/Admin/AdminPage.php:1844
 msgid "WP Queue"
 msgstr "WP Queue"
 
-#: src/Admin/AdminPage.php:2027
+#: src/Admin/AdminPage.php:2069
 msgid ""
 "WP Queue allows executing tasks asynchronously in the background without "
 "blocking the main WordPress execution flow."
 msgstr ""
-"WP Queue позволяет выполнять задачи асинхронно в фоне без блокировки "
-"основного потока выполнения WordPress."
+"WP Queue позволяет выполнять задачи асинхронно в фоновом режиме, не блокируя "
+"основной поток выполнения WordPress."
 
-#: src/Admin/AdminPage.php:107
+#: src/Admin/AdminPage.php:110
 msgid ""
 "WP Queue helps your site run heavy or regular tasks in the background "
 "(emails, synchronizations, cleanups) so that pages load faster for visitors."
 msgstr ""
-"WP Queue помогает вашему сайту выполнять тяжелые или регулярные задачи в "
-"фоновом режиме (отправка писем, синхронизации, очистка), чтобы страницы "
-"загружались быстрее для посетителей."
+"WP Queue помогает вашему сайту выполнять ресурсоемкие или регулярно "
+"выполняемые задачи в фоновом режиме (отправка электронной почты, "
+"синхронизация, очистка), благодаря чему страницы загружаются быстрее для "
+"посетителей."
 
-#: src/Admin/AdminPage.php:640
+#: src/Admin/AdminPage.php:643
 msgid ""
 "WP Queue is a robust background processing library for WordPress. It allows "
 "you to offload time-consuming tasks (like sending emails, syncing data, or "
 "generating reports) to be processed asynchronously, ensuring your site "
 "remains fast and responsive for visitors."
 msgstr ""
-"WP Queue - это надежная библиотека фоновой обработки для WordPress. Она "
-"позволяет вам выгружать трудоемкие задачи (например, отправку писем, "
-"синхронизацию данных или генерацию отчетов) для асинхронной обработки, "
-"обеспечивая быструю и отзывчивую работу сайта для посетителей."
+"WP Queue — это мощная библиотека для фоновой обработки данных в WordPress. "
+"Она позволяет переносить трудоемкие задачи (например, отправку электронных "
+"писем, синхронизацию данных или создание отчетов) на асинхронную обработку, "
+"обеспечивая быструю и отзывчивую работу вашего сайта для посетителей."
 
-#: src/Admin/AdminPage.php:656
+#: src/Admin/AdminPage.php:659
 msgid ""
 "WP Queue solves this by pushing these tasks to a \"Queue\" and processing "
 "them later in the background. The user gets an instant response, and the "
 "heavy work happens behind the scenes."
 msgstr ""
-"WP Queue решает эту проблему, помещая эти задачи в \"Очередь\" и обрабатывая "
-"их позже в фоновом режиме. Пользователь получает мгновенный ответ, а тяжелая "
-"работа происходит за кулисами."
+"WP Queue решает эту проблему, отправляя эти задачи в \"очередь\" и "
+"обрабатывая их позже в фоновом режиме. Пользователь получает мгновенный "
+"ответ, а основная работа происходит за кулисами."
 
-#: src/Admin/AdminPage.php:2025
+#: src/Admin/AdminPage.php:2067
 msgid "WP Queue — Queue System for WordPress"
-msgstr "WP Queue — Система очередей для WordPress"
+msgstr "WP Queue — система очередей для WordPress"
 
-#: src/Admin/AdminPage.php:97
+#: src/Admin/AdminPage.php:100
 msgid "WP-CLI"
 msgstr "WP-CLI"
 
-#: src/Admin/AdminPage.php:142 src/Admin/AdminPage.php:1999
+#: src/Admin/AdminPage.php:145 src/Admin/AdminPage.php:2041
 msgid "WP-CLI Commands"
 msgstr "Команды WP-CLI"
 
-#: src/Admin/AdminPage.php:2138
+#: src/Admin/AdminPage.php:2180
 msgid "WP-CLI команды"
-msgstr "Команды WP-CLI"
+msgstr "Команда WP-CLI"
 
-#: src/Admin/AdminPage.php:757 src/Admin/AdminPage.php:1866
+#: src/Admin/AdminPage.php:760 src/Admin/AdminPage.php:1905
 msgid "WP-Cron"
 msgstr "WP-Cron"
 
-#: src/Admin/AdminPage.php:678
+#: src/Admin/AdminPage.php:681
 msgid "WP-Cron (Default)"
-msgstr "WP-Cron (По умолчанию)"
+msgstr "WP-Cron (по умолчанию)"
 
-#: src/Admin/AdminPage.php:1698
+#: src/Admin/AdminPage.php:1869 src/Admin/AdminPage.php:1873
+msgid "WP-Cron + Loopback"
+msgstr "WP-Cron + Loopback"
+
+#: src/Admin/AdminPage.php:1900
+msgid "WP-Cron checks the queue every minute as a fallback."
+msgstr "WP-Cron раз в минуту проверяет очередь как подстраховку."
+
+#: src/Admin/AdminPage.php:1701
 msgid "WP-Cron Disabled"
 msgstr "WP-Cron отключен"
 
@@ -1511,29 +1728,33 @@ msgstr "WP-Cron отключен"
 msgid "WP-Cron is disabled. Background tasks may not run automatically."
 msgstr "WP-Cron отключен. Фоновые задачи могут не выполняться автоматически."
 
-#: src/Admin/AdminPage.php:1694
+#: src/Admin/AdminPage.php:1877
+msgid "WP-Cron only"
+msgstr "Только WP-Cron"
+
+#: src/Admin/AdminPage.php:1697
 msgid "WP-Cron Status"
 msgstr "Статус WP-Cron"
 
-#: src/Admin/AdminPage.php:781
+#: src/Admin/AdminPage.php:784
 msgid "WP-Cron status"
-msgstr "Статус WP-Cron"
+msgstr "статус WP-Cron"
 
-#: src/Admin/AdminPage.php:670
+#: src/Admin/AdminPage.php:673
 msgid "WP-Cron vs System Cron"
-msgstr "WP-Cron против системного Cron"
+msgstr "WP-Cron против System Cron"
 
-#: src/Admin/AdminPage.php:128
+#: src/Admin/AdminPage.php:131
 msgid ""
 "WP-Cron – list of cron events with the ability to run, pause or delete them."
 msgstr ""
-"WP-Cron – список cron-событий с возможностью запуска, приостановки или "
+"WP-Cron – список событий cron с возможностью их запуска, приостановки или "
 "удаления."
 
-#: src/Admin/AdminPage.php:1362
+#: src/Admin/AdminPage.php:1365
 msgid "WP-Cron:"
 msgstr "WP-Cron:"
 
-#: src/Admin/AdminPage.php:1029
+#: src/Admin/AdminPage.php:1032
 msgid "⚠️ Warning:"
 msgstr "⚠️ Предупреждение:"

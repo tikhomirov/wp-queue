@@ -5,7 +5,7 @@ Tags: queue, cron, background-processing, jobs, scheduler
 Requires at least: 6.0
 Tested up to: 6.9
 Requires PHP: 8.3
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,6 +147,12 @@ Yes, WP Queue works with WordPress multisite installations.
 
 == Changelog ==
 
+= 1.2.0 =
+* Added runtime modes: cron_loopback, daemon, auto
+* Added loopback dispatch for immediate queue processing after dispatch()
+* Added --daemon flag to `wp queue work` CLI command
+* WP-Cron scheduling and loopback handler are now gated by runtime mode
+
 = 1.1.0 =
 * Added Redis queue driver (compatible with redis-cache plugin)
 * Added Memcached queue driver
@@ -166,6 +172,9 @@ Yes, WP Queue works with WordPress multisite installations.
 * Russian localization
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+New runtime modes. Use `define('WP_QUEUE_RUNTIME_MODE', 'daemon')` with a separate worker process, or keep the default `cron_loopback` mode for shared hosting.
 
 = 1.1.0 =
 New Redis and Memcached drivers for better performance. Set WP_QUEUE_DRIVER to 'auto' for automatic selection.

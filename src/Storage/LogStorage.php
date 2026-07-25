@@ -56,7 +56,13 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $rows = $wpdb->get_results("SELECT * FROM {$table} ORDER BY created_at ASC", ARRAY_A) ?: [];
+        $sql = "SELECT * FROM {$table} ORDER BY created_at ASC";
+        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+
+        if ($this->isMissingTableError($wpdb->last_error)) {
+            WPQueue::install();
+            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        }
 
         return array_map(static function (array $row): array {
             return [
@@ -106,10 +112,13 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $rows = $wpdb->get_results(
-            $wpdb->prepare("SELECT * FROM {$table} WHERE status = %s ORDER BY created_at DESC", 'failed'),
-            ARRAY_A,
-        ) ?: [];
+        $sql = $wpdb->prepare("SELECT * FROM {$table} WHERE status = %s ORDER BY created_at DESC", 'failed');
+        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+
+        if ($this->isMissingTableError($wpdb->last_error)) {
+            WPQueue::install();
+            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        }
 
         return array_map(static function (array $row): array {
             return [
@@ -136,10 +145,13 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $rows = $wpdb->get_results(
-            $wpdb->prepare("SELECT * FROM {$table} WHERE status = %s ORDER BY created_at DESC", 'completed'),
-            ARRAY_A,
-        ) ?: [];
+        $sql = $wpdb->prepare("SELECT * FROM {$table} WHERE status = %s ORDER BY created_at DESC", 'completed');
+        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+
+        if ($this->isMissingTableError($wpdb->last_error)) {
+            WPQueue::install();
+            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        }
 
         return array_map(static function (array $row): array {
             return [
@@ -165,9 +177,13 @@ class LogStorage
         $table = $this->getTableName();
         $cutoff = gmdate('Y-m-d H:i:s', time() - ($daysOld * DAY_IN_SECONDS));
 
-        $deleted = $wpdb->query(
-            $wpdb->prepare("DELETE FROM {$table} WHERE created_at < %s", $cutoff),
-        );
+        $sql = $wpdb->prepare("DELETE FROM {$table} WHERE created_at < %s", $cutoff);
+        $deleted = $wpdb->query($sql);
+
+        if ($this->isMissingTableError($wpdb->last_error)) {
+            WPQueue::install();
+            $deleted = $wpdb->query($sql);
+        }
 
         return (int) $deleted;
     }
@@ -180,7 +196,13 @@ class LogStorage
         global $wpdb;
 
         $table = $this->getTableName();
-        $wpdb->query("TRUNCATE TABLE {$table}");
+        $sql = "TRUNCATE TABLE {$table}";
+        $wpdb->query($sql);
+
+        if ($this->isMissingTableError($wpdb->last_error)) {
+            WPQueue::install();
+            $wpdb->query($sql);
+        }
     }
 
     /**
@@ -194,7 +216,13 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $rows = $wpdb->get_results("SELECT queue, job_class, status FROM {$table}", ARRAY_A) ?: [];
+        $sql = "SELECT queue, job_class, status FROM {$table}";
+        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+
+        if ($this->isMissingTableError($wpdb->last_error)) {
+            WPQueue::install();
+            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        }
 
         $metrics = [
             'total' => count($rows),

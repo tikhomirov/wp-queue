@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Plugin Name: WP Queue
  * Plugin URI: https://github.com/rwsite/wp-queue
  * Description: Background job processing and WP-Cron management for WordPress. Schedule tasks, manage queues, and monitor cron events.
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: Aleksei Tikhomirov
  * Author URI: https://rwsite.ru
  * License: GPL-2.0-or-later
@@ -26,7 +26,7 @@ if (defined('WP_QUEUE_VERSION')) {
     return;
 }
 
-define('WP_QUEUE_VERSION', '1.1.0');
+define('WP_QUEUE_VERSION', '1.2.0');
 define('WP_QUEUE_FILE', __FILE__);
 define('WP_QUEUE_PATH', plugin_dir_path(__FILE__));
 define('WP_QUEUE_URL', plugin_dir_url(__FILE__));
@@ -53,19 +53,19 @@ if (file_exists(WP_QUEUE_PATH.'vendor/autoload.php')) {
     });
 }
 
-// Bootstrap
-add_action('plugins_loaded', static function (): void {
-    \WPQueue\WPQueue::boot();
-});
-
-// Load text domain
-add_action('init', static function (): void {
+// Load text domain at after_setup_theme (WordPress 6.7+ requires this or later)
+add_action('after_setup_theme', static function (): void {
     load_plugin_textdomain(
         'wp-queue',
         false,
         dirname(plugin_basename(__FILE__)).'/languages/',
     );
-});
+}, 1);
+
+// Bootstrap after text domain is loaded
+add_action('after_setup_theme', static function (): void {
+    \WPQueue\WPQueue::boot();
+}, 2);
 
 // Activation
 register_activation_hook(__FILE__, static function (): void {
