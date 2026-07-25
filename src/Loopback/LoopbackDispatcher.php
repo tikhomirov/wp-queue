@@ -30,6 +30,11 @@ final class LoopbackDispatcher
             return;
         }
 
+        if (! function_exists('wp_remote_post')) {
+            // WordPress is not fully loaded (e.g. unit tests). Skip loopback.
+            return;
+        }
+
         $queue = self::sanitizeQueue($queue);
 
         if (isset(self::$spawned[$queue])) {
