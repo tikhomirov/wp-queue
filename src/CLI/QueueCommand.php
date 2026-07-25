@@ -106,17 +106,31 @@ class QueueCommand
      * default: 256
      * ---
      *
+     * [--daemon]
+     * : Run as a daemon worker that continuously polls the queue.
+     *   In daemon mode loopback requests and WP-Cron scheduling are skipped
+     *   on the current process so the worker does not fight with itself.
+     *
      * ## EXAMPLES
      *
      *     wp queue work
      *     wp queue work emails --limit=50
      *     wp queue work imports --memory=512
+     *     wp queue work --daemon
+     *     wp queue work imports --daemon --memory=512
      *
      * @when after_wp_load
      */
     public function work(array $args, array $assocArgs): void
     {
         $queue = $args[0] ?? 'default';
+
+        if (! empty($assocArgs['daemon'])) {
+            $this->runDaemon($queue, $assocArgs);
+
+            return;
+        }
+
         $limit = (int) ($assocArgs['limit'] ?? 100);
 
         // Get default memory limit from WordPress
@@ -139,6 +153,26 @@ class QueueCommand
         }
 
         WP_CLI::success("Processed {$processed} jobs from queue: {$queue}");
+    }
+
+    /**
+     * Run a daemon worker that continuously polls the queue.
+     */
+    protected function runDaemon(string $queue, array $assocArgs): void
+    {
+        // Mark this process as the daemon so loopback/cron do not trigger
+        // additional workers inside the same process.
+        if (! defined('WP_QUEUE_DAEMON')) {
+            define('WP_QUEUE_DAEMON', true);
+        }
+
+        $memory = (int) ($assocArgs['memory'] ?? 256);
+
+        WP_CLI::log("Starting daemon worker for queue: {$queue} (memory limit: {$memory}MB)");
+
+        $worker = WPQueue::worker();
+        $worker->setMemoryLimit($memory);
+        $worker->daemon($queue);
     }
 
     /**

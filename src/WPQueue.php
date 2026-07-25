@@ -9,6 +9,7 @@ use WPQueue\Admin\RestApi;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\Jobs\PendingDispatch;
 use WPQueue\Loopback\LoopbackHandler;
+use WPQueue\Runtime\RuntimeMode;
 use WPQueue\Storage\LogStorage;
 
 /**
@@ -115,6 +116,10 @@ final class WPQueue
 
         // Schedule queue processing
         add_action('init', static function (): void {
+            if (! RuntimeMode::useCron()) {
+                return;
+            }
+
             if (! wp_next_scheduled('wp_queue_process')) {
                 wp_schedule_event(time(), 'min', 'wp_queue_process');
             }
@@ -126,7 +131,9 @@ final class WPQueue
         }
 
         // Loopback async handler (must be outside is_admin())
-        new LoopbackHandler();
+        if (RuntimeMode::useLoopback()) {
+            new LoopbackHandler();
+        }
 
         // REST API (must be outside is_admin() for REST requests to work)
         new RestApi();
@@ -165,7 +172,7 @@ final class WPQueue
     public static function install(): void
     {
         // Schedule queue processing
-        if (! wp_next_scheduled('wp_queue_process')) {
+        if (RuntimeMode::useCron() && ! wp_next_scheduled('wp_queue_process')) {
             wp_schedule_event(time(), 'min', 'wp_queue_process');
         }
 
@@ -176,7 +183,9 @@ final class WPQueue
     public static function uninstall(): void
     {
         // Отключаем крон
-        wp_clear_scheduled_hook('wp_queue_process');
+        if (RuntimeMode::useCron()) {
+            wp_clear_scheduled_hook('wp_queue_process');
+        }
 
         // Удаляем таблицу логов при деактивации
         global $wpdb;
