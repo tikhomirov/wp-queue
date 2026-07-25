@@ -6,6 +6,7 @@ namespace WPQueue;
 
 use WPQueue\Contracts\JobInterface;
 use WPQueue\Jobs\ChainedJob;
+use WPQueue\Loopback\LoopbackDispatcher;
 
 class PendingChain
 {
@@ -40,5 +41,7 @@ class PendingChain
         $chainedJob->onQueue($this->queue);
 
         $this->manager->connection()->push($chainedJob);
+
+        LoopbackDispatcher::spawn($this->queue);
     }
 }

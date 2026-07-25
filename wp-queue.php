@@ -53,19 +53,19 @@ if (file_exists(WP_QUEUE_PATH.'vendor/autoload.php')) {
     });
 }
 
-// Bootstrap
-add_action('plugins_loaded', static function (): void {
-    \WPQueue\WPQueue::boot();
-});
-
-// Load text domain
-add_action('init', static function (): void {
+// Load text domain at after_setup_theme (WordPress 6.7+ requires this or later)
+add_action('after_setup_theme', static function (): void {
     load_plugin_textdomain(
         'wp-queue',
         false,
         dirname(plugin_basename(__FILE__)).'/languages/',
     );
-});
+}, 1);
+
+// Bootstrap after text domain is loaded
+add_action('after_setup_theme', static function (): void {
+    \WPQueue\WPQueue::boot();
+}, 2);
 
 // Activation
 register_activation_hook(__FILE__, static function (): void {

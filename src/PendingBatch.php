@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WPQueue;
 
 use WPQueue\Contracts\JobInterface;
+use WPQueue\Loopback\LoopbackDispatcher;
 
 class PendingBatch
 {
@@ -34,6 +35,8 @@ class PendingBatch
             $job->onQueue($this->queue);
             $connection->push($job);
         }
+
+        LoopbackDispatcher::spawn($this->queue);
 
         return $batchId;
     }

@@ -106,15 +106,11 @@ class QueueCommand
      * default: 256
      * ---
      *
-     * [--daemon]
-     * : Run the worker continuously as a daemon.
-     *
      * ## EXAMPLES
      *
      *     wp queue work
      *     wp queue work emails --limit=50
      *     wp queue work imports --memory=512
-     *     wp queue work --daemon --memory=256
      *
      * @when after_wp_load
      */
@@ -131,13 +127,6 @@ class QueueCommand
 
         $worker = WPQueue::worker();
         $worker->setMemoryLimit($memory);
-
-        if (isset($assocArgs['daemon'])) {
-            WP_CLI::log("Starting daemon worker for queue: {$queue}");
-            $worker->daemon($queue);
-
-            return;
-        }
 
         $processed = 0;
 

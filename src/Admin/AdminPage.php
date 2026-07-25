@@ -24,7 +24,6 @@ class AdminPage
 
     public function __construct()
     {
-        $this->initTabs();
         add_action('init', [$this, 'initTabs'], 5);
         add_action('admin_menu', [$this, 'addMenuPage']);
         add_action('admin_enqueue_scripts', [$this, 'enqueueAssets']);
@@ -1029,7 +1028,7 @@ wp queue system              # Show system status</code></pre>';
                     <p>
                         <strong><?php echo esc_html__('⚠️ Warning:', 'wp-queue'); ?></strong>
                         <?php echo esc_html(sprintf(
-                            __('Driver "%s" is configured in wp-config.php, but not available. Falling back to "%s".', 'wp-queue'),
+                            __('Storage backend "%s" is configured in wp-config.php, but not available. Falling back to "%s".', 'wp-queue'),
                             $configuredDriver,
                             $currentDriver,
                         )); ?>
@@ -1041,7 +1040,7 @@ wp queue system              # Show system status</code></pre>';
             <?php } else { ?>
                 <div class="notice notice-info" style="margin: 0 0 20px;">
                     <p>
-                        <strong><?php echo esc_html__('Current driver:', 'wp-queue'); ?></strong>
+                        <strong><?php echo esc_html__('Current storage backend:', 'wp-queue'); ?></strong>
                         <?php echo esc_html(ucfirst($currentDriver)); ?>
                     </p>
                 </div>
@@ -1050,7 +1049,7 @@ wp queue system              # Show system status</code></pre>';
             <table class="wp-list-table widefat fixed striped">
                 <thead>
                     <tr>
-                        <th style="width: 150px;"><?php echo esc_html__('Driver', 'wp-queue'); ?></th>
+                        <th style="width: 150px;"><?php echo esc_html__('Storage backend', 'wp-queue'); ?></th>
                         <th style="width: 120px;"><?php echo esc_html__('Status', 'wp-queue'); ?></th>
                         <th><?php echo esc_html__('Description', 'wp-queue'); ?></th>
                         <th style="width: 100px;"><?php echo esc_html__('Active', 'wp-queue'); ?></th>
@@ -1097,7 +1096,7 @@ wp queue system              # Show system status</code></pre>';
             </table>
 
             <div class="wp-queue-help" style="margin-top: 20px;">
-                <h3><?php echo esc_html__('How to change the driver?', 'wp-queue'); ?></h3>
+                <h3><?php echo esc_html__('How to change the storage backend?', 'wp-queue'); ?></h3>
                 <p><?php echo esc_html__('Add to wp-config.php:', 'wp-queue'); ?></p>
                 <pre><code>define('WP_QUEUE_DRIVER', 'database'); // or 'redis', 'memcached', 'sync', 'auto'</code></pre>
 
@@ -1858,9 +1857,29 @@ define('WP_QUEUE_DRIVER', 'memcached');</code></pre>
             <table class="wp-list-table widefat fixed striped">
                 <tbody>
                     <tr>
-                        <th scope="row" style="width:200px;"><?php echo esc_html__('Queue Driver', 'wp-queue'); ?></th>
+                        <th scope="row" style="width:200px;"><?php echo esc_html__('Queue Storage backend', 'wp-queue'); ?></th>
                         <td>
                             <span class="status-badge status-completed"><?php echo esc_html(ucfirst($driver)); ?></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo esc_html__('Processing trigger', 'wp-queue'); ?></th>
+                        <td>
+                            <div>
+                                <span class="status-badge status-completed"><?php echo esc_html__('WP-Cron (scheduled)', 'wp-queue'); ?></span>
+                            </div>
+                            <div style="margin-top: 6px;">
+                                <span class="status-badge status-completed"><?php echo esc_html__('Immediate spawn (pseudo-loopback)', 'wp-queue'); ?></span>
+                                <span class="description"><?php echo esc_html__('After dispatch, schedules a single cron run and calls spawn_cron()', 'wp-queue'); ?></span>
+                            </div>
+                            <div style="margin-top: 6px;">
+                                <span class="status-badge status-pending"><?php echo esc_html__('REST trigger (planned)', 'wp-queue'); ?></span>
+                                <span class="description"><?php echo esc_html__('Not implemented yet', 'wp-queue'); ?></span>
+                            </div>
+                            <div style="margin-top: 6px;">
+                                <span class="status-badge status-pending"><?php echo esc_html__('VPS worker (planned)', 'wp-queue'); ?></span>
+                                <span class="description"><?php echo esc_html__('Not implemented yet', 'wp-queue'); ?></span>
+                            </div>
                         </td>
                     </tr>
                     <tr>

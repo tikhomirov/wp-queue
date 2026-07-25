@@ -8,6 +8,7 @@ use WPQueue\Admin\AdminPage;
 use WPQueue\Admin\RestApi;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\Jobs\PendingDispatch;
+use WPQueue\Loopback\LoopbackHandler;
 use WPQueue\Storage\LogStorage;
 
 /**
@@ -73,30 +74,27 @@ final class WPQueue
         add_action('wp_queue_process', static function (string $queue = 'default'): void {
             error_log('WP Queue: Processing started for queue: '.$queue);
 
+            if (self::isProcessing($queue)) {
+                error_log('WP Queue: Processing already running for queue: '.$queue);
+
+                return;
+            }
+
+            $lockKey = 'wp_queue_lock_'.$queue;
+            $lockTtl = 120;
+
+            set_site_transient($lockKey, 1, $lockTtl);
+
             $instance = self::getInstance();
             $instance->worker->setMaxJobs(50);
             $instance->worker->setMaxTime(50);
 
-            // Start with the queue passed from the cron event (default: "default")
-            $queues = [$queue];
+            // Discover all queues from the current driver
+            $queues = $instance->manager->discoverQueues();
 
-            // Auto-discover all queues stored in options (wp_queue_jobs_*)
-            if (function_exists('get_option')) {
-                global $wpdb;
-
-                $results = $wpdb->get_col(
-                    $wpdb->prepare(
-                        "SELECT option_name FROM {$wpdb->options} WHERE option_name LIKE %s",
-                        'wp_queue_jobs_%',
-                    ),
-                );
-
-                foreach ($results as $optionName) {
-                    $name = str_replace('wp_queue_jobs_', '', $optionName);
-                    if (! in_array($name, $queues, true)) {
-                        $queues[] = $name;
-                    }
-                }
+            // Ensure default queue is always processed
+            if (! in_array($queue, $queues, true)) {
+                array_unshift($queues, $queue);
             }
 
             // Process each discovered queue until worker reaches its limits
@@ -108,7 +106,11 @@ final class WPQueue
                 }
             }
 
-            error_log('WP Queue: Processing completed. Jobs processed: '.$instance->worker->getJobsProcessed());
+            try {
+                error_log('WP Queue: Processing completed. Jobs processed: '.$instance->worker->getJobsProcessed());
+            } finally {
+                delete_site_transient($lockKey);
+            }
         });
 
         // Schedule queue processing
@@ -122,6 +124,9 @@ final class WPQueue
         if (is_admin()) {
             new AdminPage();
         }
+
+        // Loopback async handler (must be outside is_admin())
+        new LoopbackHandler();
 
         // REST API (must be outside is_admin() for REST requests to work)
         new RestApi();
