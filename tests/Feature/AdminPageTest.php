@@ -37,6 +37,7 @@ test('AdminPage регистрирует меню верхнего уровня'
 
 test('AdminPage имеет 3 основные вкладки', function (): void {
     $adminPage = new AdminPage();
+    $adminPage->initTabs();
     $reflection = new ReflectionClass($adminPage);
 
     // Получаем приватное свойство tabs
@@ -53,6 +54,7 @@ test('AdminPage имеет 3 основные вкладки', function (): void
 
 test('AdminPage имеет секции для каждой вкладки', function (): void {
     $adminPage = new AdminPage();
+    $adminPage->initTabs();
     $reflection = new ReflectionClass($adminPage);
 
     $sectionsProperty = $reflection->getProperty('sections');
@@ -67,6 +69,7 @@ test('AdminPage имеет секции для каждой вкладки', fun
 
 test('Вкладка Очереди имеет 5 секций', function (): void {
     $adminPage = new AdminPage();
+    $adminPage->initTabs();
     $reflection = new ReflectionClass($adminPage);
 
     $sectionsProperty = $reflection->getProperty('sections');
@@ -83,6 +86,7 @@ test('Вкладка Очереди имеет 5 секций', function (): voi
 
 test('Вкладка Планировщик заданий имеет 4 секции', function (): void {
     $adminPage = new AdminPage();
+    $adminPage->initTabs();
     $reflection = new ReflectionClass($adminPage);
 
     $sectionsProperty = $reflection->getProperty('sections');
@@ -98,6 +102,7 @@ test('Вкладка Планировщик заданий имеет 4 секц
 
 test('Вкладка Система имеет 3 секции', function (): void {
     $adminPage = new AdminPage();
+    $adminPage->initTabs();
     $reflection = new ReflectionClass($adminPage);
 
     $sectionsProperty = $reflection->getProperty('sections');
