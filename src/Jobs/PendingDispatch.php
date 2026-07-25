@@ -8,6 +8,10 @@ use WPQueue\Contracts\JobInterface;
 use WPQueue\Loopback\LoopbackDispatcher;
 use WPQueue\QueueManager;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class PendingDispatch
 {
     protected bool $shouldDispatch = true;

@@ -12,6 +12,10 @@ use WPQueue\Events\JobProcessing;
 use WPQueue\Events\JobRetrying;
 use WPQueue\Storage\LogStorage;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class Worker
 {
     protected int $startTime;

@@ -23,6 +23,11 @@ Thumbs.db
 # Logs
 *.log
 
+# Translation tool backups
+*backup*
+*.po~
+*.pot~
+
 # Local config
 .env
 .env.local

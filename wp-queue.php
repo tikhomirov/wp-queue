@@ -3,17 +3,17 @@
 declare(strict_types=1);
 
 /**
- * Plugin Name: WP Queue
+ * Plugin Name: Queue Manager
  * Plugin URI: https://github.com/rwsite/wp-queue
  * Description: Background job processing and WP-Cron management for WordPress. Schedule tasks, manage queues, and monitor cron events.
- * Version: 1.2.0
+ * Version: 1.2.1
  * Author: Aleksei Tikhomirov
  * Author URI: https://rwsite.ru
  * License: GPL-2.0-or-later
  * Text Domain: wp-queue
  * Domain Path: /languages/
  * Requires PHP: 8.3
- * Requires at least: 6.0
+ * Requires at least: 6.2
  */
 if (! defined('ABSPATH')) {
     exit;
@@ -26,7 +26,7 @@ if (defined('WP_QUEUE_VERSION')) {
     return;
 }
 
-define('WP_QUEUE_VERSION', '1.2.0');
+define('WP_QUEUE_VERSION', '1.2.1');
 define('WP_QUEUE_FILE', __FILE__);
 define('WP_QUEUE_PATH', plugin_dir_path(__FILE__));
 define('WP_QUEUE_URL', plugin_dir_url(__FILE__));

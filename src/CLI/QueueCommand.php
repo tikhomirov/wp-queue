@@ -9,6 +9,10 @@ use WP_CLI\Utils;
 use WPQueue\Admin\SystemStatus;
 use WPQueue\WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Manage WP Queue jobs and cron events.
  *

@@ -7,6 +7,10 @@ namespace WPQueue\Events;
 use Throwable;
 use WPQueue\Contracts\JobInterface;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 final readonly class JobFailed
 {
     public function __construct(

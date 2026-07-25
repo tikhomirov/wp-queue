@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace WPQueue\Queue\Redis;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Interface for Redis client adapters.
  *

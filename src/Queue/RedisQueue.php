@@ -9,6 +9,10 @@ use WPQueue\Contracts\QueueInterface;
 use WPQueue\Queue\Redis\RedisClientFactory;
 use WPQueue\Queue\Redis\RedisClientInterface;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Redis-based queue implementation.
  *

@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace WPQueue\Runtime;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 final class RuntimeMode
 {
     public const MODE_CRON_LOOPBACK = 'cron_loopback';

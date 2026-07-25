@@ -8,6 +8,10 @@ use WPQueue\Contracts\JobInterface;
 use WPQueue\Jobs\PendingDispatch;
 use WPQueue\Queue\SyncQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class Dispatcher
 {
     public function __construct(

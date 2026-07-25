@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class ScheduledJob
 {
     protected string $interval = '';

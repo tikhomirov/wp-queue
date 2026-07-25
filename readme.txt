@@ -1,11 +1,11 @@
-=== WP Queue - Background Job Manager ===
+=== Queue Manager ===
 Contributors: rwsite
 Donate link: https://rwsite.ru/donate
 Tags: queue, cron, background-processing, jobs, scheduler
-Requires at least: 6.0
-Tested up to: 6.9
+Requires at least: 6.2
+Tested up to: 7.0
 Requires PHP: 8.3
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,6 +147,14 @@ Yes, WP Queue works with WordPress multisite installations.
 
 == Changelog ==
 
+= 1.2.1 =
+* Added ABSPATH guards to all PHP files
+* Fixed WordPress Plugin Check errors: escaping, i18n placeholders, input sanitization
+* Refactored database queries to use identifier placeholders
+* Fixed arbitrary class instantiation in REST API run job endpoint
+* Renamed plugin display name to Queue Manager
+* Updated "Tested up to" to 7.0 and "Requires at least" to 6.2
+
 = 1.2.0 =
 * Added runtime modes: cron_loopback, daemon, auto
 * Added loopback dispatch for immediate queue processing after dispatch()
@@ -172,6 +180,9 @@ Yes, WP Queue works with WordPress multisite installations.
 * Russian localization
 
 == Upgrade Notice ==
+
+= 1.2.1 =
+Maintenance release with WordPress Plugin Check fixes and plugin rename to Queue Manager.
 
 = 1.2.0 =
 New runtime modes. Use `define('WP_QUEUE_RUNTIME_MODE', 'daemon')` with a separate worker process, or keep the default `cron_loopback` mode for shared hosting.

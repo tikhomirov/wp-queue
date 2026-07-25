@@ -11,6 +11,10 @@ use WPQueue\Attributes\Schedule;
 use WPQueue\Attributes\Timeout;
 use WPQueue\Contracts\JobInterface;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class Scheduler
 {
     /**

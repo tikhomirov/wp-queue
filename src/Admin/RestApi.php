@@ -9,6 +9,10 @@ use WP_REST_Request;
 use WP_REST_Response;
 use WPQueue\WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class RestApi
 {
     public function __construct()
@@ -329,7 +333,7 @@ class RestApi
     {
         $jobClass = urldecode($request->get_param('job'));
 
-        if (! class_exists($jobClass)) {
+        if (! class_exists($jobClass) || ! is_subclass_of($jobClass, \WPQueue\Jobs\Job::class)) {
             return new WP_Error('invalid_job', 'Job class not found', ['status' => 404]);
         }
 

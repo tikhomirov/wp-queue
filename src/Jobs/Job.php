@@ -7,6 +7,10 @@ namespace WPQueue\Jobs;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\Contracts\ShouldQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 abstract class Job implements JobInterface, ShouldQueue
 {
     protected string $id;
