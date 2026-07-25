@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace WPQueue\Queue\Redis;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * phpredis extension adapter.
  */
@@ -94,7 +98,7 @@ class PhpRedisClient implements RedisClientInterface
             $this->redis->setOption(\Redis::OPT_PREFIX, $this->config['prefix']);
         } catch (\RedisException $e) {
             $this->connected = false;
-            throw new \RuntimeException('Redis connection failed: '.$e->getMessage(), 0, $e);
+            throw new \RuntimeException(esc_html('Redis connection failed: '.$e->getMessage()), 0, $e);
         }
     }
 

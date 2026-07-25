@@ -7,6 +7,10 @@ namespace WPQueue\Loopback;
 use WPQueue\Runtime\RuntimeMode;
 use WPQueue\WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Spawns non-blocking loopback requests to trigger immediate queue processing.
  *

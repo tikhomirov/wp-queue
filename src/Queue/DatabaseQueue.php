@@ -7,6 +7,10 @@ namespace WPQueue\Queue;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\Contracts\QueueInterface;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class DatabaseQueue implements QueueInterface
 {
     protected const PREFIX = 'wp_queue_';

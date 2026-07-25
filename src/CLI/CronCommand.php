@@ -8,6 +8,10 @@ use WP_CLI;
 use WP_CLI\Utils;
 use WPQueue\Admin\CronMonitor;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Manage WP-Cron events.
  *

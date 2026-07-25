@@ -6,6 +6,10 @@ namespace WPQueue\Loopback;
 
 use WPQueue\WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Handles loopback requests that trigger immediate queue processing.
  *
@@ -29,7 +33,7 @@ final class LoopbackHandler
         // Don't lock up other requests while processing.
         session_write_close();
 
-        $queue = LoopbackDispatcher::sanitizeQueue($_REQUEST['queue'] ?? 'default');
+        $queue = LoopbackDispatcher::sanitizeQueue(wp_unslash($_REQUEST['queue'] ?? 'default'));
 
         if (! $this->verifyNonce($queue)) {
             wp_die('Unauthorized', 'Unauthorized', ['response' => 403]);
@@ -50,12 +54,12 @@ final class LoopbackHandler
      */
     protected function verifyNonce(string $queue): bool
     {
-        $nonce = $_REQUEST['nonce'] ?? '';
+        $nonce = wp_unslash($_REQUEST['nonce'] ?? '');
 
         if (empty($nonce)) {
             return false;
         }
 
-        return wp_verify_nonce(sanitize_text_field(wp_unslash($nonce)), LoopbackDispatcher::nonceAction($queue)) !== false;
+        return wp_verify_nonce(sanitize_text_field($nonce), LoopbackDispatcher::nonceAction($queue)) !== false;
     }
 }

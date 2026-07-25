@@ -7,6 +7,10 @@ namespace WPQueue\Queue;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\Contracts\QueueInterface;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Synchronous queue - executes jobs immediately.
  */

@@ -6,6 +6,10 @@ namespace WPQueue\Events;
 
 use WPQueue\Contracts\JobInterface;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 final readonly class JobProcessing
 {
     public function __construct(

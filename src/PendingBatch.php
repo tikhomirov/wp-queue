@@ -7,6 +7,10 @@ namespace WPQueue;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\Loopback\LoopbackDispatcher;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class PendingBatch
 {
     protected string $queue = 'default';

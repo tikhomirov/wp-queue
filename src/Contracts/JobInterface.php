@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace WPQueue\Contracts;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 interface JobInterface
 {
     /**

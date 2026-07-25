@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace WPQueue\Admin;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class SystemStatus
 {
     /**

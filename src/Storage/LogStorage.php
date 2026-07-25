@@ -7,6 +7,10 @@ namespace WPQueue\Storage;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class LogStorage
 {
     /**
@@ -56,12 +60,12 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $sql = "SELECT * FROM {$table} ORDER BY created_at ASC";
-        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        $sql = $wpdb->prepare('SELECT * FROM %i ORDER BY created_at ASC', $table);
+        $rows = $this->getResults($sql);
 
         if ($this->isMissingTableError($wpdb->last_error)) {
             WPQueue::install();
-            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+            $rows = $this->getResults($sql);
         }
 
         return array_map(static function (array $row): array {
@@ -112,12 +116,12 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $sql = $wpdb->prepare("SELECT * FROM {$table} WHERE status = %s ORDER BY created_at DESC", 'failed');
-        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        $sql = $wpdb->prepare('SELECT * FROM %i WHERE status = %s ORDER BY created_at DESC', $table, 'failed');
+        $rows = $this->getResults($sql);
 
         if ($this->isMissingTableError($wpdb->last_error)) {
             WPQueue::install();
-            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+            $rows = $this->getResults($sql);
         }
 
         return array_map(static function (array $row): array {
@@ -145,12 +149,12 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $sql = $wpdb->prepare("SELECT * FROM {$table} WHERE status = %s ORDER BY created_at DESC", 'completed');
-        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        $sql = $wpdb->prepare('SELECT * FROM %i WHERE status = %s ORDER BY created_at DESC', $table, 'completed');
+        $rows = $this->getResults($sql);
 
         if ($this->isMissingTableError($wpdb->last_error)) {
             WPQueue::install();
-            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+            $rows = $this->getResults($sql);
         }
 
         return array_map(static function (array $row): array {
@@ -177,12 +181,14 @@ class LogStorage
         $table = $this->getTableName();
         $cutoff = gmdate('Y-m-d H:i:s', time() - ($daysOld * DAY_IN_SECONDS));
 
-        $sql = $wpdb->prepare("DELETE FROM {$table} WHERE created_at < %s", $cutoff);
-        $deleted = $wpdb->query($sql);
+        $sql = $wpdb->prepare('DELETE FROM %i WHERE created_at < %s', $table, $cutoff);
+        $this->executeQuery($sql);
+        $deleted = $wpdb->rows_affected;
 
         if ($this->isMissingTableError($wpdb->last_error)) {
             WPQueue::install();
-            $deleted = $wpdb->query($sql);
+            $this->executeQuery($sql);
+            $deleted = $wpdb->rows_affected;
         }
 
         return (int) $deleted;
@@ -196,12 +202,12 @@ class LogStorage
         global $wpdb;
 
         $table = $this->getTableName();
-        $sql = "TRUNCATE TABLE {$table}";
-        $wpdb->query($sql);
+        $sql = $wpdb->prepare('TRUNCATE TABLE %i', $table);
+        $this->executeQuery($sql);
 
         if ($this->isMissingTableError($wpdb->last_error)) {
             WPQueue::install();
-            $wpdb->query($sql);
+            $this->executeQuery($sql);
         }
     }
 
@@ -216,12 +222,12 @@ class LogStorage
 
         $table = $this->getTableName();
 
-        $sql = "SELECT queue, job_class, status FROM {$table}";
-        $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+        $sql = $wpdb->prepare('SELECT queue, job_class, status FROM %i', $table);
+        $rows = $this->getResults($sql);
 
         if ($this->isMissingTableError($wpdb->last_error)) {
             WPQueue::install();
-            $rows = $wpdb->get_results($sql, ARRAY_A) ?: [];
+            $rows = $this->getResults($sql);
         }
 
         $metrics = [
@@ -253,6 +259,30 @@ class LogStorage
         }
 
         return $metrics;
+    }
+
+    /**
+     * Execute a read query against the logs table.
+     *
+     * @return array<int, array<string, mixed>>
+     */
+    protected function getResults(string $sql): array
+    {
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.NoCaching
+        return $wpdb->get_results($sql, ARRAY_A) ?: [];
+    }
+
+    /**
+     * Execute a write query against the logs table.
+     */
+    protected function executeQuery(string $sql): void
+    {
+        global $wpdb;
+
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.NoCaching
+        $wpdb->query($sql);
     }
 
     protected function getTableName(): string

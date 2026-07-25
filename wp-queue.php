@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 /**
- * Plugin Name: WP Queue
+ * Plugin Name: Queue Manager
  * Plugin URI: https://github.com/rwsite/wp-queue
  * Description: Background job processing and WP-Cron management for WordPress. Schedule tasks, manage queues, and monitor cron events.
  * Version: 1.2.0
@@ -13,7 +13,7 @@ declare(strict_types=1);
  * Text Domain: wp-queue
  * Domain Path: /languages/
  * Requires PHP: 8.3
- * Requires at least: 6.0
+ * Requires at least: 6.2
  */
 if (! defined('ABSPATH')) {
     exit;

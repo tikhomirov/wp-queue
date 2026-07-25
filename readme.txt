@@ -1,9 +1,9 @@
-=== WP Queue - Background Job Manager ===
+=== Queue Manager ===
 Contributors: rwsite
 Donate link: https://rwsite.ru/donate
 Tags: queue, cron, background-processing, jobs, scheduler
-Requires at least: 6.0
-Tested up to: 6.9
+Requires at least: 6.2
+Tested up to: 7.0
 Requires PHP: 8.3
 Stable tag: 1.2.0
 License: GPLv2 or later

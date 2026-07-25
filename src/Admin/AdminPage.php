@@ -8,6 +8,10 @@ use WPQueue\Loopback\LoopbackDispatcher;
 use WPQueue\Runtime\RuntimeMode;
 use WPQueue\WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Admin Page with Rank Math style UI
  * 3 main tabs: Queues, Scheduler, System
@@ -206,8 +210,8 @@ wp queue system              # Show system status</code></pre>';
 
     public function renderPage(): void
     {
-        $tab = sanitize_key($_GET['tab'] ?? 'queues');
-        $section = sanitize_key($_GET['section'] ?? '');
+        $tab = sanitize_key(wp_unslash($_GET['tab'] ?? 'queues'));
+        $section = sanitize_key(wp_unslash($_GET['section'] ?? ''));
 
         if (! isset($this->tabs[$tab])) {
             $tab = 'queues';
@@ -219,8 +223,8 @@ wp queue system              # Show system status</code></pre>';
         }
 
         // Проверка на детальный просмотр очереди
-        $queueView = sanitize_key($_GET['queue'] ?? '');
-        $jobView = sanitize_key($_GET['job'] ?? '');
+        $queueView = sanitize_key(wp_unslash($_GET['queue'] ?? ''));
+        $jobView = sanitize_key(wp_unslash($_GET['job'] ?? ''));
 
         ?>
         <div class="wrap wp-queue-wrap">
@@ -337,7 +341,7 @@ wp queue system              # Show system status</code></pre>';
         $metrics = WPQueue::logs()->metrics();
         $queues = $this->getQueuesStatus();
         $driver = WPQueue::manager()->getDefaultDriver();
-        $filter = sanitize_key($_GET['status'] ?? '');
+        $filter = sanitize_key(wp_unslash($_GET['status'] ?? ''));
         ?>
         <div class="wp-queue-content-wrapper">
             <!-- Статистика - кликабельные карточки -->
@@ -407,7 +411,7 @@ wp queue system              # Show system status</code></pre>';
     protected function renderQueueDetail(string $queueName, string $jobId = ''): void
     {
         $jobs = $this->getQueueJobs($queueName);
-        $page = max(1, (int) ($_GET['paged'] ?? 1));
+        $page = max(1, (int) wp_unslash($_GET['paged'] ?? 1));
         $totalJobs = count($jobs);
         $totalPages = max(1, (int) ceil($totalJobs / self::JOBS_PER_PAGE));
         $offset = ($page - 1) * self::JOBS_PER_PAGE;
@@ -420,7 +424,11 @@ wp queue system              # Show system status</code></pre>';
             <!-- Заголовок с действиями -->
             <div class="queue-detail-header">
                 <div class="queue-detail-title">
-                    <h1><?php echo esc_html(sprintf(__('Queue: %s', 'wp-queue'), $queueName)); ?></h1>
+                    <h1><?php echo esc_html(sprintf(
+                        // translators: %s: Queue name.
+                        __('Queue: %s', 'wp-queue'),
+                        $queueName,
+                    )); ?></h1>
                     <span class="status-badge status-<?php echo $isPaused ? 'paused' : ($isProcessing ? 'running' : 'idle'); ?>">
                         <?php
                             if ($isPaused) {
@@ -542,7 +550,11 @@ wp queue system              # Show system status</code></pre>';
                 <div class="tablenav bottom">
                     <div class="tablenav-pages">
                         <span class="displaying-num">
-                            <?php echo esc_html(sprintf(__('%d tasks', 'wp-queue'), $totalJobs)); ?>
+                            <?php echo esc_html(sprintf(
+                                // translators: %d: Number of tasks.
+                                __('%d tasks', 'wp-queue'),
+                                $totalJobs,
+                            )); ?>
                         </span>
                         <span class="pagination-links">
                             <?php
@@ -809,9 +821,9 @@ wp queue system              # Show system status</code></pre>';
 
     protected function renderQueuesHistory(): void
     {
-        $filter = sanitize_key($_GET['filter'] ?? 'all');
-        $queueFilter = sanitize_key($_GET['queue_filter'] ?? '');
-        $page = max(1, (int) ($_GET['paged'] ?? 1));
+        $filter = sanitize_key(wp_unslash($_GET['filter'] ?? 'all'));
+        $queueFilter = sanitize_key(wp_unslash($_GET['queue_filter'] ?? ''));
+        $page = max(1, (int) wp_unslash($_GET['paged'] ?? 1));
 
         // Получаем все логи
         $allLogs = match ($filter) {
@@ -910,7 +922,11 @@ wp queue system              # Show system status</code></pre>';
                 <div class="tablenav bottom">
                     <div class="tablenav-pages">
                         <span class="displaying-num">
-                            <?php echo esc_html(sprintf(__('%d entries', 'wp-queue'), $totalLogs)); ?>
+                            <?php echo esc_html(sprintf(
+                                // translators: %d: Number of log entries.
+                                __('%d entries', 'wp-queue'),
+                                $totalLogs,
+                            )); ?>
                         </span>
                         <span class="pagination-links">
                             <?php
@@ -940,7 +956,7 @@ wp queue system              # Show system status</code></pre>';
     protected function renderQueuesFailed(): void
     {
         $failedLogs = WPQueue::logs()->failed();
-        $page = max(1, (int) ($_GET['paged'] ?? 1));
+        $page = max(1, (int) wp_unslash($_GET['paged'] ?? 1));
         $totalLogs = count($failedLogs);
         $totalPages = max(1, (int) ceil($totalLogs / self::LOGS_PER_PAGE));
         $offset = ($page - 1) * self::LOGS_PER_PAGE;
@@ -1031,7 +1047,8 @@ wp queue system              # Show system status</code></pre>';
                     <p>
                         <strong><?php echo esc_html__('⚠️ Warning:', 'wp-queue'); ?></strong>
                         <?php echo esc_html(sprintf(
-                            __('Storage backend "%s" is configured in wp-config.php, but not available. Falling back to "%s".', 'wp-queue'),
+                            // translators: 1: Configured storage backend, 2: Fallback storage backend.
+                            __('Storage backend "%1$s" is configured in wp-config.php, but not available. Falling back to "%2$s".', 'wp-queue'),
                             $configuredDriver,
                             $currentDriver,
                         )); ?>
@@ -1072,7 +1089,7 @@ wp queue system              # Show system status</code></pre>';
                                 <?php } ?>
                             </td>
                             <td>
-                                <?php echo $this->renderDriverStatusBadge($status, $info); ?>
+                                <?php echo wp_kses_post($this->renderDriverStatusBadge($status, $info)); ?>
                             </td>
                             <td>
                                 <?php echo esc_html($info['message'] ?? $info['info'] ?? ''); ?>
@@ -1425,7 +1442,7 @@ define('WP_QUEUE_DRIVER', 'memcached');</code></pre>
     protected function renderSchedulerEvents(): void
     {
         $monitor = new CronMonitor();
-        $filter = sanitize_key($_GET['filter'] ?? 'all');
+        $filter = sanitize_key(wp_unslash($_GET['filter'] ?? 'all'));
 
         $events = match ($filter) {
             'wordpress' => array_filter($monitor->getAllEvents(), fn ($e) => $e['source'] === 'wordpress'),

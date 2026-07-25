@@ -7,6 +7,10 @@ namespace WPQueue\Jobs;
 use WPQueue\Contracts\JobInterface;
 use WPQueue\WPQueue;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class ChainedJob extends Job
 {
     /**

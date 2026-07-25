@@ -8,6 +8,14 @@ use WPQueue\Contracts\JobInterface;
 use WPQueue\Jobs\ChainedJob;
 use WPQueue\Loopback\LoopbackDispatcher;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 class PendingChain
 {
     protected string $queue = 'default';

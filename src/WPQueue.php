@@ -12,6 +12,10 @@ use WPQueue\Loopback\LoopbackHandler;
 use WPQueue\Runtime\RuntimeMode;
 use WPQueue\Storage\LogStorage;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Main facade for WP Queue.
  *
@@ -191,7 +195,8 @@ final class WPQueue
         global $wpdb;
 
         $table = $wpdb->prefix.'queue_logs';
-        $wpdb->query("DROP TABLE IF EXISTS {$table}");
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
+        $wpdb->query($wpdb->prepare('DROP TABLE IF EXISTS %i', $table));
     }
 
     protected static function createLogsTable(): void
@@ -216,6 +221,7 @@ final class WPQueue
             KEY created_at (created_at)
         ) {$charsetCollate};";
 
+        // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared,WordPress.DB.DirectDatabaseQuery.SchemaChange
         $wpdb->query($sql);
     }
 

@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace WPQueue\Queue\Redis;
 
+if (! defined('ABSPATH')) {
+    exit;
+}
+
 /**
  * Predis library adapter.
  *
@@ -88,7 +92,7 @@ class PredisClient implements RedisClientInterface
             $this->connected = true;
         } catch (\Throwable $e) {
             $this->connected = false;
-            throw new \RuntimeException('Predis connection failed: '.$e->getMessage(), 0, $e);
+            throw new \RuntimeException(esc_html('Predis connection failed: '.$e->getMessage()), 0, $e);
         }
     }
 
