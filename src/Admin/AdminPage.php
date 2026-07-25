@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace WPQueue\Admin;
 
+use WPQueue\Loopback\LoopbackDispatcher;
+use WPQueue\Runtime\RuntimeMode;
 use WPQueue\WPQueue;
 
 /**
@@ -53,6 +55,7 @@ class AdminPage
             ],
             'system' => [
                 'status' => ['title' => __('System Status', 'wp-queue'), 'icon' => 'dashicons-heart'],
+                'daemon' => ['title' => __('Daemon worker', 'wp-queue'), 'icon' => 'dashicons-admin-generic'],
                 'tools' => ['title' => __('Tools', 'wp-queue'), 'icon' => 'dashicons-admin-tools'],
                 'help' => ['title' => __('Help', 'wp-queue'), 'icon' => 'dashicons-editor-help'],
             ],
@@ -1852,6 +1855,32 @@ define('WP_QUEUE_DRIVER', 'memcached');</code></pre>
                 </tbody>
             </table>
 
+            <?php
+            $resolvedMode = RuntimeMode::resolveMode();
+        $loopbackEnabled = LoopbackDispatcher::isEnabled();
+        $loopbackStatus = $loopbackInfo['status'] ?? 'unknown';
+        $loopbackOk = $loopbackStatus === 'ok';
+
+        if ($resolvedMode === RuntimeMode::MODE_DAEMON) {
+            $handlerLabel = __('Daemon process', 'wp-queue');
+            $handlerClass = 'status-completed';
+            $handlerDescription = __('A daemon worker is expected to process queues. WP-Cron and loopback are disabled.', 'wp-queue');
+        } elseif ($loopbackEnabled && $loopbackOk) {
+            $handlerLabel = __('WP-Cron + Loopback', 'wp-queue');
+            $handlerClass = 'status-completed';
+            $handlerDescription = __('Loopback is enabled and working. Jobs start immediately after dispatch.', 'wp-queue');
+        } elseif ($loopbackEnabled) {
+            $handlerLabel = __('WP-Cron + Loopback', 'wp-queue');
+            $handlerClass = 'status-pending';
+            $handlerDescription = __('Loopback is inactive. Jobs will be processed only by WP-Cron, which can delay execution by up to one minute. Enable loopback or run a daemon worker for instant processing.', 'wp-queue');
+        } else {
+            $handlerLabel = __('WP-Cron only', 'wp-queue');
+            $handlerClass = 'status-pending';
+            $handlerDescription = __('Loopback is disabled. Jobs will be processed only by WP-Cron, which can delay execution by up to one minute. Run a daemon worker for instant processing.', 'wp-queue');
+        }
+
+        $wpCronDisabled = $report['wp_cron_disabled'] ?? false;
+        ?>
             <!-- Статус компонентов -->
             <h2><?php echo esc_html__('Component Status', 'wp-queue'); ?></h2>
             <table class="wp-list-table widefat fixed striped">
@@ -1863,29 +1892,19 @@ define('WP_QUEUE_DRIVER', 'memcached');</code></pre>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row"><?php echo esc_html__('Processing trigger', 'wp-queue'); ?></th>
+                        <th scope="row"><?php echo esc_html__('Queue handler', 'wp-queue'); ?></th>
                         <td>
-                            <div>
-                                <span class="status-badge status-completed"><?php echo esc_html__('WP-Cron (scheduled)', 'wp-queue'); ?></span>
-                            </div>
-                            <div style="margin-top: 6px;">
-                                <span class="status-badge status-completed"><?php echo esc_html__('Immediate spawn (pseudo-loopback)', 'wp-queue'); ?></span>
-                                <span class="description"><?php echo esc_html__('After dispatch, schedules a single cron run and calls spawn_cron()', 'wp-queue'); ?></span>
-                            </div>
-                            <div style="margin-top: 6px;">
-                                <span class="status-badge status-pending"><?php echo esc_html__('REST trigger (planned)', 'wp-queue'); ?></span>
-                                <span class="description"><?php echo esc_html__('Not implemented yet', 'wp-queue'); ?></span>
-                            </div>
-                            <div style="margin-top: 6px;">
-                                <span class="status-badge status-pending"><?php echo esc_html__('VPS worker (planned)', 'wp-queue'); ?></span>
-                                <span class="description"><?php echo esc_html__('Not implemented yet', 'wp-queue'); ?></span>
-                            </div>
+                            <span class="status-badge <?php echo esc_attr($handlerClass); ?>"><?php echo esc_html($handlerLabel); ?></span>
+                            <span class="description"><?php echo esc_html($handlerDescription); ?></span>
+                            <?php if (! $wpCronDisabled && $resolvedMode !== RuntimeMode::MODE_DAEMON) { ?>
+                                <span class="description"><?php echo esc_html__('WP-Cron checks the queue every minute as a fallback.', 'wp-queue'); ?></span>
+                            <?php } ?>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row"><?php echo esc_html__('WP-Cron', 'wp-queue'); ?></th>
                         <td>
-                            <?php if ($cronInfo['disabled'] ?? false) { ?>
+                            <?php if ($wpCronDisabled) { ?>
                                 <span class="status-badge status-failed"><?php echo esc_html__('Disabled', 'wp-queue'); ?></span>
                                 <span class="description"><?php echo esc_html__('Configure system cron', 'wp-queue'); ?></span>
                             <?php } else { ?>
@@ -1897,16 +1916,19 @@ define('WP_QUEUE_DRIVER', 'memcached');</code></pre>
                         <th scope="row"><?php echo esc_html__('Loopback', 'wp-queue'); ?></th>
                         <td>
                             <?php
-                                $loopbackStatus = $loopbackInfo['status'] ?? 'unknown';
-        $statusClass = match ($loopbackStatus) {
-            'ok' => 'completed',
-            'warning' => 'pending',
-            default => 'failed',
+                            $lbBadgeClass = match ($loopbackStatus) {
+                                'ok' => 'status-completed',
+                                'warning' => 'status-pending',
+                                default => 'status-failed',
+                            };
+        $lbStatusLabel = match ($loopbackStatus) {
+            'ok' => __('OK', 'wp-queue'),
+            'warning' => __('Warning', 'wp-queue'),
+            'error' => __('Error', 'wp-queue'),
+            default => __('Unknown', 'wp-queue'),
         };
         ?>
-                            <span class="status-badge status-<?php echo esc_attr($statusClass); ?>">
-                                <?php echo esc_html(ucfirst($loopbackStatus)); ?>
-                            </span>
+                            <span class="status-badge <?php echo esc_attr($lbBadgeClass); ?>"><?php echo esc_html($lbStatusLabel); ?></span>
                             <?php if ($loopbackStatus !== 'ok' && isset($loopbackInfo['message'])) { ?>
                                 <span class="description"><?php echo esc_html($loopbackInfo['message']); ?></span>
                             <?php } ?>
@@ -2253,6 +2275,101 @@ wp queue cron run hook_name</code></pre>
             <?php } ?>
         </div>
 <?php
+    }
+
+    /**
+     * Инструкция по запуску демон-воркера
+     */
+    protected function renderSystemDaemon(): void
+    {
+        ?>
+        <div class="wp-queue-content-wrapper">
+            <div class="wp-queue-section-header">
+                <h1><?php echo esc_html__('Daemon worker', 'wp-queue'); ?></h1>
+                <p class="description"><?php echo esc_html__('How to run WP Queue as a long-running background process.', 'wp-queue'); ?></p>
+            </div>
+
+            <div class="wp-queue-help">
+                <h2><?php echo esc_html__('When to use a daemon', 'wp-queue'); ?></h2>
+                <p><?php echo esc_html__('Use a daemon worker on VPS, Docker or dedicated servers where you can keep a process running. It polls the queue continuously and starts jobs immediately. Without a daemon, WP Queue relies on WP-Cron and/or loopback, which can delay jobs by up to a minute.', 'wp-queue'); ?></p>
+
+                <h2><?php echo esc_html__('1. Enable daemon runtime mode', 'wp-queue'); ?></h2>
+                <p><?php echo esc_html__('Add this to wp-config.php:', 'wp-queue'); ?></p>
+                <pre><code>define('WP_QUEUE_RUNTIME_MODE', 'daemon');</code></pre>
+                <p class="description"><?php echo esc_html__('In this mode WP-Cron scheduling and loopback requests are disabled automatically.', 'wp-queue'); ?></p>
+
+                <h2><?php echo esc_html__('2. Run the worker', 'wp-queue'); ?></h2>
+
+                <h3><?php echo esc_html__('With WP-CLI', 'wp-queue'); ?></h3>
+                <p><?php echo esc_html__('Start the worker from the WordPress root:', 'wp-queue'); ?></p>
+                <pre><code>wp queue work --daemon --memory=256</code></pre>
+                <p class="description"><?php echo esc_html__('--memory limits the PHP memory for the worker process. Adjust the value to your needs.', 'wp-queue'); ?></p>
+
+                <h3><?php echo esc_html__('Without WP-CLI', 'wp-queue'); ?></h3>
+                <p><?php echo esc_html__('If WP-CLI is not available, create a PHP script that boots WordPress and runs the worker loop:', 'wp-queue'); ?></p>
+                <pre><code>&lt;?php
+define('WP_QUEUE_DAEMON', true);
+define('WP_QUEUE_RUNTIME_MODE', 'daemon');
+
+require '/var/www/html/wordpress/wp-load.php';
+
+$queue = $argv[1] ?? 'default';
+$memory = 256;
+
+ini_set('memory_limit', "{$memory}M");
+set_time_limit(0);
+
+WPQueue\WPQueue::worker()->setMemoryLimit($memory);
+WPQueue\WPQueue::worker()->daemon($queue);</code></pre>
+                <p class="description"><?php echo esc_html__('Save the script, make it executable and run it in the background:', 'wp-queue'); ?></p>
+                <pre><code>chmod +x /var/www/html/wp-queue-daemon.php
+nohup php /var/www/html/wp-queue-daemon.php > /var/log/wp-queue-daemon.log 2>&1 &amp;</code></pre>
+
+                <h2><?php echo esc_html__('3. Keep it running', 'wp-queue'); ?></h2>
+                <p><?php echo esc_html__('The command above must stay alive. In production use one of the options below.', 'wp-queue'); ?></p>
+
+                <h3><?php echo esc_html__('Option A: systemd service', 'wp-queue'); ?></h3>
+                <pre><code>[Unit]
+Description=WP Queue daemon worker
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/html
+ExecStart=/usr/local/bin/wp queue work --daemon --memory=256
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+                <p class="description"><?php echo esc_html__('Save as /etc/systemd/system/wp-queue-worker.service, then run systemctl enable --now wp-queue-worker.', 'wp-queue'); ?></p>
+
+                <h3><?php echo esc_html__('Option B: Supervisor', 'wp-queue'); ?></h3>
+                <pre><code>[program:wp-queue-worker]
+command=/usr/local/bin/wp queue work --daemon --memory=256
+directory=/var/www/html
+user=www-data
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/wp-queue-worker.err.log
+stdout_logfile=/var/log/wp-queue-worker.out.log</code></pre>
+
+                <h3><?php echo esc_html__('Option C: Docker Compose', 'wp-queue'); ?></h3>
+                <pre><code>worker:
+  image: your-wordpress-image
+  command: ["wp", "queue", "work", "--daemon", "--memory=256"]
+  restart: unless-stopped</code></pre>
+
+                <h3><?php echo esc_html__('Option D: plain PHP script', 'wp-queue'); ?></h3>
+                <p><?php echo esc_html__('Use the script from step 2 (Without WP-CLI) inside screen, tmux or a simple cron-based restart loop. Remember that the script must stay alive to act as a daemon.', 'wp-queue'); ?></p>
+
+                <h2><?php echo esc_html__('4. Check status', 'wp-queue'); ?></h2>
+                <pre><code>wp queue status</code></pre>
+                <p><?php echo esc_html__('If the worker is not running, queues will not be processed in daemon mode. Make sure the process is started and monitored.', 'wp-queue'); ?></p>
+            </div>
+        </div>
+        <?php
     }
 }
 

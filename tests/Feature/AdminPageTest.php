@@ -100,7 +100,7 @@ test('Вкладка Планировщик заданий имеет 4 секц
     expect($sections['scheduler'])->toHaveKey('scheduled');
 });
 
-test('Вкладка Система имеет 3 секции', function (): void {
+test('Вкладка Система имеет 4 секции', function (): void {
     $adminPage = new AdminPage();
     $adminPage->initTabs();
     $reflection = new ReflectionClass($adminPage);
@@ -109,8 +109,9 @@ test('Вкладка Система имеет 3 секции', function (): voi
     $sectionsProperty->setAccessible(true);
     $sections = $sectionsProperty->getValue($adminPage);
 
-    expect($sections['system'])->toHaveCount(3);
+    expect($sections['system'])->toHaveCount(4);
     expect($sections['system'])->toHaveKey('status');
+    expect($sections['system'])->toHaveKey('daemon');
     expect($sections['system'])->toHaveKey('tools');
     expect($sections['system'])->toHaveKey('help');
 });
@@ -170,6 +171,12 @@ test('AdminPage рендерит методы для секций Планиро
     $adminPage = new AdminPage();
 
     expect(method_exists($adminPage, 'renderSchedulerEvents'))->toBeTrue();
+});
+
+test('AdminPage рендерит метод для секции Демон', function (): void {
+    $adminPage = new AdminPage();
+
+    expect(method_exists($adminPage, 'renderSystemDaemon'))->toBeTrue();
 });
 
 test('Метод getStatusLabel возвращает корректные метки', function (): void {
